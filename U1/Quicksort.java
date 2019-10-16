@@ -18,7 +18,7 @@ public class Quicksort {
 		
 		float arr[] = new float[SIZE]; 
 		
-		for(int i = 1; i < SIZE; i++) {
+		for(int i = 1; i < SIZE; i ++) {
 			arr[i] = random.nextFloat();
 		}
 		
@@ -77,15 +77,15 @@ public class Quicksort {
 		for(int j = p; j < r; j++) {
 			if(arr[j] <= x) {
 				i += 1;
-				counter++;
+				counter ++;
 				exchange(arr, i, j);
 			}
 		}
 		exchange(arr, i + 1, r);
-		return i+1;
+		return i + 1;
 	}
 	
-	public static int random_partition(float[]arr , int p, int r) {
+	public static int random_partition(float[] arr , int p, int r) {
 		//[0,r-p+1) -> [p,r+1) -> [p,r]
 		int i = random.nextInt(r - p + 1) + p;
 		exchange(arr, r, i);
@@ -98,7 +98,7 @@ public class Quicksort {
 		int stop = j - i;
 		while(swap) {
 			swap = false;
-			for(int temp = i; temp < stop; temp++) {
+			for(int temp = i; temp < stop; temp ++) {
 				if(arr[temp] > arr[temp + 1]) {
 					counter ++; 
 					exchange(arr, temp, temp + 1);
