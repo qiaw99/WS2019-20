@@ -18,7 +18,7 @@ public class Quicksort {
 		
 		float arr[] = new float[SIZE]; 
 		
-		for(int i = 1; i < SIZE; i ++) {
+		for(int i = 0; i < SIZE; i ++) {
 			arr[i] = random.nextFloat();
 		}
 		
