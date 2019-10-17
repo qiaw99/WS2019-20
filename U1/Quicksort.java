@@ -5,7 +5,6 @@ import java.util.Random;
 /**
  * As an alternative of quicksort, we use bubblesort.
  * @author Qianli and Nazar
- * 
  */
 
 public class Quicksort {
@@ -15,11 +14,20 @@ public class Quicksort {
 	public static Random random = new Random();
 	
 	public static void main(String args[]) {
-		
 		float arr[] = new float[SIZE]; 
+		float temp;
 		
 		for(int i = 0; i < SIZE; i ++) {
-			arr[i] = random.nextFloat();
+			/* Produce float within the interval [0,2).
+			 * With the help of nextFloat(), the probability
+			 * of one float whose value is between [0,1]
+			 * is equally distributed.
+			 */
+			temp = 2 * random.nextFloat();
+			while(temp > 1) {
+				temp = 2 * random.nextFloat();
+			}
+			arr[i] = temp;
 		}
 		
 		// Get the start time with unit "ns"
