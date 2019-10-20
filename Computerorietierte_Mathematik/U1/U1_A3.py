@@ -6,7 +6,9 @@ __author__ = "Qianli und Nazar"
 __copyright__ = "Copyright (c) 2019 qiaw99"
 # https://github.com/qiaw99/WS2019-20/blob/master/LICENSE
 
+# Task a)
 def ntobasetwo(n, c):
+    # To guarantee that n and c are natural numbers <=> instance of Integer
     if(n >= 0 and isinstance(n, int) and isinstance(c, int)):
         if((n == 1 or n == 0) and c == 1):
             return str(n)
@@ -34,7 +36,10 @@ def ntobasetwo(n, c):
     else:
         raise Exception("The input n is wrong!")
 
-# Help function, to transform the natural number into binary form
+"""
+Help function, to transform natural numbers into binary form.
+@param n: a decimal numbers
+"""
 def dec2bin(n):     
     if(n==1 or n==0):
         return str(n)
@@ -46,7 +51,7 @@ def dec2bin(n):
         else:
             return dec2bin(n) + '1'
 
-# The first element of the pair is value and the second is the carry
+# The first element of the pair is value and the second is carry
 def add(a, b):
     if(a == 1 and b == 1):
         return (0, 1)
@@ -55,12 +60,17 @@ def add(a, b):
     else:
         return (0, 0)
 
-# @param b is a binary String
+# Task b)
+# @param b: a binary String
 def complement(b):
-    length = len(b)
-    temp = ''
+    # To guarantee that the string is builded with 0 and 1
+    for i in range(len(b)):
+        if(b[i] != '0' and b[i] != '1'):
+            raise Exception("Please enter Strings which contain only '0' or '1'!")
 
     # One's complement
+    length = len(b)
+    temp = ''
     for i in range(length):
         if(b[i] == '1'):
             temp = temp + '0' 
@@ -77,8 +87,8 @@ def complement(b):
         str2 = str(value) + str2
     return str2
 
-# @param b is a number
-def zwei_complement(b):
+# @param b: a decimal number
+def two_complement(b):
     if(isinstance(b, int)): 
         if(b < 0):
             b *= -1
@@ -91,13 +101,14 @@ def zwei_complement(b):
     else:
         raise Exception("The input b is not an Integer!")
 
+# Task c)
 def ztobasetwo(z, c):
     if(isinstance(z, int)):
         if(z < 0):
-            temp = zwei_complement(z)
+            temp = two_complement(z)
             if(len(temp) < c):
                 return '1' * (c - len(temp)) + temp
-            return zwei_complement(z)
+            return two_complement(z)
         elif(z > 0):
             return ntobasetwo(z, c)
         else:
@@ -114,11 +125,13 @@ def test():
     c = int(input("And what about the length?\n"))
     print("The result is: " + ntobasetwo(n, c))
 
+    print()
     print("********** Aufgabe 3-b **********")
-    print("Transformation from decimal number into two's complement.")
-    b = input("What's the number you would like to transform?\n")
+    print("Transformation from decimal number into two's complement. Please don't enter ''.")
+    b = input("What's the String you would like to transform?\n")
     print("The result is: " + complement(b))
 
+    print()
     print("********** Aufgabe 3-c **********")
     z = int(input("What's the number you would like to transform?\n"))
     c = int(input("And what about the length?\n"))
@@ -129,5 +142,3 @@ def main():
 
 if(__name__ == '__main__'):
     main()
-    
-
