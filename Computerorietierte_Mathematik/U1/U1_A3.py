@@ -38,7 +38,7 @@ def ntobasetwo(n, c):
 
 """
 Help function, to transform natural numbers into binary form.
-@param n: a decimal numbers
+@param n: a decimal number
 """
 def dec2bin(n):     
     if(n==1 or n==0):
