@@ -4,4 +4,4 @@ our solution is that we will add '1' in the front of the transformed binary Stri
 
 2. If a number is positive, than its two's komplement is the same as its binary form.
 However, when it is negative, then we have to complement it and then add 1. Meanwhile,
-it's not terrible that overflows come in this case.
+it's not terrible that overflows come up in this case.
