@@ -4,7 +4,7 @@ import pysnooper
 '''
 __author__ = "Qianli und Nazar"
 __copyright__ = "Copyright (c) 2019 qiaw99"
-# https://github.com/qiaw99/Data-Structure/blob/master/LICENSE
+# https://github.com/qiaw99/WS2019-20/blob/master/LICENSE
 
 def ntobasetwo(n, c):
     if(n >= 0 and isinstance(n, int) and isinstance(c, int)):
