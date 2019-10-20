@@ -55,30 +55,37 @@ def add(a, b):
     else:
         return (0, 0)
 
+# @param b is a binary String
 def complement(b):
+    length = len(b)
+    temp = ''
+
+    # One's complement
+    for i in range(length):
+        if(b[i] == '1'):
+            temp = temp + '0' 
+        else:
+            temp = temp + '1' 
+
+    # Two's complement
+    carry = 1
+    str2 = ''
+    for i in range(length - 1, -1, -1):
+        pair = add(int(temp[i]), carry)
+        value = pair[0]
+        carry = pair[1]      
+        str2 = str(value) + str2
+    return str2
+
+# @param b is a number
+def zwei_complement(b):
     if(isinstance(b, int)): 
         if(b < 0):
             b *= -1
             length = len(dec2bin(b))
             temp = ''
             str1 = dec2bin(b)
-
-            # One's complement
-            for i in range(length):
-                if(str1[i] == '1'):
-                    temp = temp + '0' 
-                else:
-                    temp = temp + '1' 
-            
-            # Two's complement
-            carry = 1
-            str2 = ''
-            for i in range(length - 1, -1, -1):
-                pair = add(int(temp[i]), carry)
-                value = pair[0]
-                carry = pair[1]      
-                str2 = str(value) + str2
-            return str2
+            return complement(str1)
         else:
             return dec2bin(b)
     else:
@@ -87,10 +94,10 @@ def complement(b):
 def ztobasetwo(z, c):
     if(isinstance(z, int)):
         if(z < 0):
-            temp = complement(z)
+            temp = zwei_complement(z)
             if(len(temp) < c):
                 return '1' * (c - len(temp)) + temp
-            return complement(z)
+            return zwei_complement(z)
         elif(z > 0):
             return ntobasetwo(z, c)
         else:
@@ -100,6 +107,7 @@ def ztobasetwo(z, c):
 
 def test():
     print()
+
     print("********** Aufgabe 3-a **********")
     print("Transformation from decimal number into binary number.")
     n = int(input("What's the number you would like to transform?\n"))
@@ -108,12 +116,7 @@ def test():
 
     print("********** Aufgabe 3-b **********")
     print("Transformation from decimal number into two's complement.")
-    b = int(input("What's the number you would like to transform?\n"))
-    """
-    while(b < 0):
-        print("The input b can't be negative!")
-        b = int(input("What's the number you would like to transform?\n"))
-    """
+    b = input("What's the number you would like to transform?\n")
     print("The result is: " + complement(b))
 
     print("********** Aufgabe 3-c **********")
