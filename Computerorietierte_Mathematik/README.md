@@ -1,2 +1,2 @@
 # Hausaufgaben von Computerorietierte Mathematik
-Als Anwendungsbereich
+Als Anwendungsbereich (5LP)
