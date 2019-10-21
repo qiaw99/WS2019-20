@@ -9,13 +9,20 @@ import java.util.Random;
 
 public class Quicksort {
 	// "counter" is used to count the number of comparisons
-	public static int counter = 0;
+	public static long counter = 0;
 	public static final int SIZE = 20000000;
 	public static Random random = new Random();
+	public static long b = 10000;
+	/*
+	 * Assume that b = 100000
+	 * The best length with bubblesort is 7600. 
+	 */
 	
 	public static void main(String args[]) {
 		float arr[] = new float[SIZE]; 
 		float temp;
+		
+		System.out.println("The bubblesort is called with max length: " + b);
 		
 		for(int i = 0; i < SIZE; i ++) {
 			/* Produce float within the interval [0,2).
@@ -30,12 +37,12 @@ public class Quicksort {
 			arr[i] = temp;
 		}
 		
-		// Get the start time with unit "ns"
-		long startTime = System.nanoTime();   
+		// Get the start time with unit "ms"
+		long startTime = System.currentTimeMillis();   
 		
 		qSort(arr, 0, SIZE - 1);
 		
-		long endTime = System.nanoTime(); 
+		long endTime = System.currentTimeMillis(); 
 		System.out.println("The running time of this programm is: " + (endTime - startTime) + "ms");  
 		
 		/*
@@ -52,14 +59,13 @@ public class Quicksort {
 		if(low < high) {
 			int q = random_partition(arr, low ,high);
 			
-			// Assumpt b = 100000
-			if(q - 1 - low > 10000) {
+			if(q - 1 - low > b) {
 				qSort(arr, low, q - 1);
 			}else {
 				bubblesort(arr, low, q - 1);
 			}
 			
-			if(high - q - 1 > 10000) {
+			if(high - q - 1 > b) {
 				qSort(arr, q + 1, high);
 			}else {
 				bubblesort(arr, q + 1, high);
@@ -118,3 +124,4 @@ public class Quicksort {
 		return arr;
 	}
 }
+
