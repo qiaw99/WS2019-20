@@ -55,7 +55,8 @@ public class TopoSort {
                     }
                     Knoten inLoop = temp;
                     System.out.println("Loop is: " + temp);
-                    while ((inLoop.ersterNachfolger).equals(temp) == false) {
+                    // TODO
+                    while ((inLoop.ersterNachfolger.v).equals(temp) == false) {
                         System.out.println(inLoop + " ");
                         inLoop = inLoop.ersterNachfolger.v;
                     }
