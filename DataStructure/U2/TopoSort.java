@@ -1,6 +1,6 @@
 import java.io.*;
 
-class TopoSort {
+public class TopoSort {
     int n;
     Knoten[] Knotenliste; // Liste aller Knoten 1,...,n
     Knoten[] freieKnoten; // Menge Q der Knoten ohne Vorgänger
@@ -13,7 +13,7 @@ class TopoSort {
         TopoSort x = new TopoSort();
     }
 
-    TopoSort() throws IOException {
+    public TopoSort() throws IOException {
         System.out.println("Topologischen Sortieren.");
         // Einlesen
         n = input.readInt();
@@ -51,13 +51,13 @@ class TopoSort {
                     // so it has no influence on running time of for-loop
                     Knoten temp = Knotenliste[0];
                     while (temp.anzVorgänger == 0) {
-                          temp = temp.ersterNachfolger;
+                          temp = temp.ersterNachfolger.v;
                     }
                     Knoten inLoop = temp;
-                    System.out.println("Loop is: ", temp);
-                    while (inLoop.ersterNachfolger != temp) {
-                        System.out.println(inLoop, " ");
-                        inLoop = inLoop.ersterNachfolger;
+                    System.out.println("Loop is: " + temp);
+                    while ((inLoop.ersterNachfolger).equals(temp) == false) {
+                        System.out.println(inLoop + " ");
+                        inLoop = inLoop.ersterNachfolger.v;
                     }
                     break sort;
                 }
@@ -79,11 +79,13 @@ class TopoSort {
 class Knoten {
     int Name, anzVorgänger;
     Kante ersterNachfolger;
-    Knoten(int i) {
+    
+    public Knoten(int i) {
         Name = i;
         anzVorgänger = 0;
         ersterNachfolger = null;
     }
+    
     public String toString() {
         return String.valueOf(Name);
     }
@@ -92,7 +94,8 @@ class Knoten {
 class Kante {
     Knoten u, v;
     Kante next;
-    Kante(Knoten uu, Knoten vv) {
+    
+    public Kante(Knoten uu, Knoten vv) {
         u = uu;
         v = vv;
     }
