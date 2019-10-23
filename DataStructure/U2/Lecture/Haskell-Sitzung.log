@@ -1,0 +1,31 @@
+$ ghci Menge.hs 
+GHCi, version 8.4.4: http://www.haskell.org/ghc/  :? for help
+[1 of 1] Compiling Main             ( Menge.hs, interpreted )
+Ok, one module loaded.
+*Main> :t ei
+ei :: Int -> M -> M
+*Main> :t ie
+ie :: Int -> M -> Bool
+*Main> a = ei 2 (ei 4 (ei 6 le)))
+
+<interactive>:3:26: error: parse error on input ‘)’
+*Main> a = ei 2 (ei 4 (ei 6 Le)))
+
+<interactive>:4:26: error: parse error on input ‘)’
+*Main> a = ei 2 (ei 4 (ei 6 Le))
+*Main> ie 4 a
+True
+*Main> ie 3 a
+False
+*Main> b = ei 4 a
+*Main> ie 4 b
+True
+*Main> c = lö 4 b
+*Main> ie 4 c
+False
+*Main> c
+Lö 4 (Ei 4 (Ei 2 (Ei 4 (Ei 6 Le))))
+*Main> ie 0 c
+False
+*Main> 
+Leaving GHCi.
