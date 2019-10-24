@@ -20,11 +20,12 @@ public class TopoSort {
 
         // Inititalisieren array:
         Knotenliste = new Knoten[n + 1];
-        for (int i = 0; i < n; i++) Knotenliste[i] = new Knoten(i);
+        for (int i = 1; i <= n; i++) Knotenliste[i] = new Knoten(i);
 
         // Einlesen Kanten
         try {
             for (;;) {
+                // TODO
                 Knoten e = Knotenliste[input.readInt()];
                 Knoten f = Knotenliste[input.readInt()];
                 Kante x = new Kante(e, f);
@@ -37,26 +38,32 @@ public class TopoSort {
         // Vorbereiten:
         freieKnoten = new Knoten[n];
         AnzfreieKnoten = 0;
-        for (int i = 0; i < n; i++) {
+        for (int i = 1; i <= n; i++) {
             Knoten e = Knotenliste[i];
             if (e.anzVorgänger == 0)
                 freieKnoten[AnzfreieKnoten++] = e;
         }
         // Sortieren:
-        System.out.println("");
+        System.out.println(""); 
         sort:
             for (int i = 1; i <= n; i++) {
                 if (AnzfreieKnoten == 0) {
+                    System.out.println("Now in the if");
                     // after this instruction will be "break" executed,
                     // so it has no influence on running time of for-loop
-                    Knoten temp = Knotenliste[0];
+                    System.out.println("before instance");
+                    Knoten temp = Knotenliste[1];
+                    System.out.println(temp);
+                    System.out.println(temp.anzVorgänger);
                     while (temp.anzVorgänger == 0) {
-                          temp = temp.ersterNachfolger.v;
+                        System.out.println("in the first while");
+                        temp = temp.ersterNachfolger.v;
                     }
                     Knoten inLoop = temp;
                     System.out.println("Loop is: " + temp);
                     // TODO
                     while ((inLoop.ersterNachfolger.v).equals(temp) == false) {
+                        System.out.println("in the 2 while");
                         System.out.println(inLoop + " ");
                         inLoop = inLoop.ersterNachfolger.v;
                     }
