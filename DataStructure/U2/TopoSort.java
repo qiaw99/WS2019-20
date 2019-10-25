@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class TopoSort {
+class TopoSort {
     int n;
     Knoten[] Knotenliste; // Liste aller Knoten 1,...,n
     Knoten[] freieKnoten; // Menge Q der Knoten ohne Vorgänger
@@ -13,7 +13,7 @@ public class TopoSort {
         TopoSort x = new TopoSort();
     }
 
-    public TopoSort() throws IOException {
+    TopoSort() throws IOException {
         System.out.println("Topologischen Sortieren.");
         // Einlesen
         n = input.readInt();
@@ -25,7 +25,6 @@ public class TopoSort {
         // Einlesen Kanten
         try {
             for (;;) {
-                // TODO
                 Knoten e = Knotenliste[input.readInt()];
                 Knoten f = Knotenliste[input.readInt()];
                 Kante x = new Kante(e, f);
@@ -44,34 +43,26 @@ public class TopoSort {
                 freieKnoten[AnzfreieKnoten++] = e;
         }
         // Sortieren:
-        System.out.println(""); 
+        System.out.println("\nFreie Knoten: ");
         sort:
             for (int i = 1; i <= n; i++) {
                 if (AnzfreieKnoten == 0) {
-                    System.out.println("Now in the if");
-                    // after this instruction will be "break" executed,
-                    // so it has no influence on running time of for-loop
-                    System.out.println("before instance");
-                    Knoten temp = Knotenliste[1];
-                    System.out.println(temp);
-                    System.out.println(temp.anzVorgänger);
-                    while (temp.anzVorgänger == 0) {
-                        System.out.println("in the first while");
-                        temp = temp.ersterNachfolger.v;
+                    int j = 1;
+                    Knoten temp = Knotenliste[j];
+                    while (temp.ersterNachfolger == null)
+                        temp = Knotenliste[++j];
+                    System.out.print("\n\nFehler. Die Eingabe enthält einen Kreis: " + temp);
+                    Knoten loopElem = temp.ersterNachfolger.v;
+                    while (!(loopElem.equals(temp))) {
+                        System.out.print(" " + loopElem);
+                        loopElem = loopElem.ersterNachfolger.v;
                     }
-                    Knoten inLoop = temp;
-                    System.out.println("Loop is: " + temp);
-                    // TODO
-                    while ((inLoop.ersterNachfolger.v).equals(temp) == false) {
-                        System.out.println("in the 2 while");
-                        System.out.println(inLoop + " ");
-                        inLoop = inLoop.ersterNachfolger.v;
-                    }
+                    System.out.println(" ");
                     break sort;
                 }
                 // Wähle einen Knoten ohne Vorgänger
                 Knoten x = freieKnoten[--AnzfreieKnoten];
-                System.out.println(x);
+                System.out.print(x + " ");
                 // Entferne ausgehende Kanten:
                 Kante z = x.ersterNachfolger;
                 while (z != null) {
@@ -87,13 +78,11 @@ public class TopoSort {
 class Knoten {
     int Name, anzVorgänger;
     Kante ersterNachfolger;
-    
-    public Knoten(int i) {
+    Knoten(int i) {
         Name = i;
         anzVorgänger = 0;
         ersterNachfolger = null;
     }
-    
     public String toString() {
         return String.valueOf(Name);
     }
@@ -102,8 +91,7 @@ class Knoten {
 class Kante {
     Knoten u, v;
     Kante next;
-    
-    public Kante(Knoten uu, Knoten vv) {
+    Kante(Knoten uu, Knoten vv) {
         u = uu;
         v = vv;
     }
