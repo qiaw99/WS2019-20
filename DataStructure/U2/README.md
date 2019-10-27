@@ -4,18 +4,18 @@ yield 表达式
 
 与普通函数不同，生成器函数被调用后，其函数体内的代码并不会立即执行，而是返回一个生成器（generator-iterator）。当返回的生成器调用成员方法时，相应的生成器函数中的代码才会执行。
 
-def square():
-    for x in range(4):
-        yield x ** 2
-square_gen = square()
-for x in square_gen:
-    print(x)
+    def square():
+        for x in range(4):
+            yield x ** 2
+    square_gen = square()
+    for x in square_gen:
+        print(x)
 前面说到，for 循环会调用 iter() 函数，获取一个生成器；而后调用 next() 函数，将生成器中的下一个值赋值给 x；再执行循环体。因此，上述 for 循环基本等价于：
 
-genitor = square_gen.__iter__()
-while True:
-    x = geniter.next() # Python 3 是 __next__()
-    print(x)
+    genitor = square_gen.__iter__()
+    while True:
+        x = geniter.next() # Python 3 是 __next__()
+        print(x)
 注意到，square 是一个生成器函数；作为它的返回值，square_gen 已经是一个迭代器；迭代器的 __iter__() 返回它自己。因此 geniter 对应的生成器函数，即是 square。
 
 每次执行到 x = geniter.next() 时，square 函数会从上一次暂停的位置开始，一直执行到下一个 yield 表达式，将 yield 关键字后的表达式列表返回给调用者，并再次暂停。注意，每次从暂停恢复时，生成器函数的内部变量、指令指针、内部求值栈等内容和暂停时完全一致。
@@ -37,33 +37,33 @@ generator.close()：告诉生成器函数，当前生成器作废不再使用。
 关于「下一个」yield 表达式
 介绍「生成器的方法」时，我们说当调用 generator.next() 时，生成器函数会从当前位置开始执行到下一个 yield 表达式。这里的「下一个」指的是执行逻辑的下一个。因此
 
-def f123():
-    yield 1
-    yield 2
-    yield 3
-
-for item in f123(): # 1, 2, and 3, will be printed
-    print(item)
-
-def f13():
-    yield 1
-    while False:
+    def f123():
+        yield 1
         yield 2
-    yield 3
+        yield 3
 
-for item in f13(): # 1 and 3, will be printed
-    print(item)
+    for item in f123(): # 1, 2, and 3, will be printed
+        print(item)
+
+    def f13():
+        yield 1
+        while False:
+            yield 2
+        yield 3
+
+    for item in f13(): # 1 and 3, will be printed
+        print(item)
 使用 send() 方法与生成器函数通信
-def func():
-    x = 1
-    while True:
-        y = (yield x)
-        x += y
+    def func():
+        x = 1
+        while True:
+            y = (yield x)
+            x += y
 
-geniter = func()
-geniter.next()  # 1
-geniter.send(3) # 4
-geniter.send(10)# 14
+    geniter = func()
+    geniter.next()  # 1
+    geniter.send(3) # 4
+    geniter.send(10)# 14
 此处，生成器函数 func 用 yield 表达式，将处理好的 x 发送给生成器的调用者；与此同时，生成器的调用者通过 send 函数，将外部信息作为生成器函数内部的 yield 表达式的值，保存在 y 当中，并参与后续的处理。
 
 这一特性是使用 yield 在 Python 中使用协程的基础。
