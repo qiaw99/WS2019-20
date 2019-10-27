@@ -13,8 +13,8 @@ Bis der nächste Knote von inLoop != temp:
 /**
 Bei der Existanz eines Kreises, statt einfach eine Meldung zu geben, alle Knoten im Kreis auszudrucken.
 
-Nach der Überprüfung von der Anzahl der Vorgängern überspringen wie alle Knoten, die frei sind, and tun nichts, bis den ersten Knoten, der keinen Vorgänger hat.
-Dann speichern wir den Knote in inLoop und temp. "temp" wird als die Abbruchsbedingung dienen. 
+Nach der Überprüfung von der Anzahl der Vorgänger überspringen wie alle Knoten, die frei sind, and tun nichts, bis den ersten Knoten, der keinen Vorgänger hat.
+Dann speichern wir den Knoten in inLoop und temp. "temp" wird als die Abbruchsbedingung dienen. 
 Also die while-Schleife wird immer ausgeführt, d.h. alle Knoten im Kreis werden ausgedruckt und inLoop wird nach
 jedem Schleifendurchgang durch den nächsten Knoten gesetzt. Und "temp" dient als die Abbruchsbedingung. D.h. die while-Schleife
 wird beenden, bis inLoop wieder gleich temp ist. D.h. alle Knoten im Kreis werden schon einmal ausgedruckt.
