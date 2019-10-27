@@ -1,0 +1,21 @@
+Für alle Knoten mit anzVorgänger = 0 :
+	tun nicht
+
+inLoop,temp = None
+Für den ersten Knote mit anzVorgänger != 0 :
+	inLoop = der erste Knote
+	temp = inLoop
+
+Bis der nächste Knote von inLoop != temp:
+	ausgeben inLoop
+	inLoop = der nächste Knote von inLoop
+
+/**
+Bei der Existanz eines Kreises, statt einfach eine Meldung zu geben, alle Knoten im Kreis auszudrucken.
+
+Nach der Überprüfung von der Anzahl der Vorgängern überspringen wie alle Knoten, die frei sind, and tun nichts, bis den ersten Knoten, der keinen Vorgänger hat.
+Dann speichern wir den Knote in inLoop und temp. "temp" wird als die Abbruchsbedingung dienen. 
+Also die while-Schleife wird immer ausgeführt, d.h. alle Knoten im Kreis werden ausgedruckt und inLoop wird nach
+jedem Schleifendurchgang durch den nächsten Knoten gesetzt. Und "temp" dient als die Abbruchsbedingung. D.h. die while-Schleife
+wird beenden, bis inLoop wieder gleich temp ist. D.h. alle Knoten im Kreis werden schon einmal ausgedruckt.
+*/
