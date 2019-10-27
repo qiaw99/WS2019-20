@@ -54,6 +54,7 @@ generator.close()：告诉生成器函数，当前生成器作废不再使用。
     for item in f13(): # 1 and 3, will be printed
         print(item)
 使用 send() 方法与生成器函数通信
+
     def func():
         x = 1
         while True:
