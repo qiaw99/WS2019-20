@@ -87,14 +87,54 @@ class BinarySearchTree{
 			y.right = z;
 		}
 	}
+	
+	public void transplant(BinarySearchTree T, TreeNode u, TreeNode v) {
+		if(u.parent == null) {
+			T.root = v;
+		}else if(u == u.parent.left) {
+			u.parent.left = v;
+		}else {
+			u.parent.right = v;
+		}
+		if(v != null) {
+			v.parent = u.parent;
+		}
+	}
+	
+	public void delete(BinarySearchTree T, TreeNode z) {
+		if(z.left == null) {
+			transplant(T, z, z.right);
+		}else if(z.right == null) {
+			transplant(T, z, z.left);
+		}else {
+			TreeNode y = minimum(z.right);
+			if(y.parent != z) {
+				transplant(T, y, y.right);
+				y.right = z.right;
+				y.right.parent = y;
+			}
+			transplant(T, z, y);
+			y.left = z.left;
+			y.left.parent = y;
+		}
+	}
 }
 
 public class BSearchTree{
 	public static void main(String args[]) {
+		TreeNode t1 = new TreeNode(1);
+		TreeNode t2 = new TreeNode(6);
 		BinarySearchTree tree = new BinarySearchTree();
 		tree.insert(tree, new TreeNode(2));
 		tree.insert(tree, new TreeNode(3));
 		tree.insert(tree, new TreeNode(5));
+		tree.insert(tree, new TreeNode(4));
+		tree.insert(tree, t1);
+		tree.insert(tree, t2);
+		tree.transplant(tree, t1, t2);
+		tree.inOrder(tree.root);
+		tree.delete(tree, t1);
+		System.out.println();
 		tree.inOrder(tree.root);
 	}
 }
