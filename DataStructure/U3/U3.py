@@ -1,4 +1,10 @@
+'''
+import pysnooper
+@pysnooper.snoop()
+'''
 __author__ = "Qianli and Nazar"
+__copyright__ = "Copyright (c) 2019 qiaw99"
+# https://github.com/qiaw99/WS2019-20/blob/master/LICENSE
 
 # Task 18 a)
 def verschiebe(F,b):
@@ -6,10 +12,8 @@ def verschiebe(F,b):
     for i in range(0, len(ls), 2):
         ls[i] -= b
     return tuple(ls)
-# Task 18 b): die ganze Graph wird nach links um 1 verschoben.
 
-F = (0,1,1,2,2,3,3,4,4)
-# print(verschiebe(F,1))
+# Task 18 b): die ganze Graph wird nach links um 1 verschoben.
 
 """
 H(x) = F(x) x < b
@@ -18,7 +22,7 @@ H(x) = F(x) x < b
 # Task 19
 def fallunterscheidung(b, F, G):
     H = []
-    if(F[0] >= b or G[-1] < b):
+    if(F[0] >= b or G[-1] < b or F[-1] <= G[0]):
         return None
     # Find the right rand after b and store in i
     i = 0
@@ -46,7 +50,29 @@ def fallunterscheidung(b, F, G):
 
     return tuple(H+ls)
 
-F = (0,3,2)
-G = (2,4,5)
-print(fallunterscheidung(1,F,G))
+def test():
+		
+	print()
+	print("#######Aufgabe 18#######")
+	F = eval(input("Bitte geben Sie die Funtion in Form Tupel:\n"))
+	b = int(input("Um wie viel verschieben?\n"))
+	if(b < 0):
+		print("Verschieb nach rechts um " + str(b))
+	elif(b > 0):
+		print("Verschieb nach links um " + str(b))
+	else:
+		print("Bleibt unverändert")
+	print("Das Ergebnis: ", verschiebe(F,b))
 
+	print()
+	print("#######Aufgabe 19#######")
+	F = eval(input("Bitte geben Sie die erste Funtion in Form Tupel:\n"))
+	G = eval(input("Bitte geben Sie die zweite Funtion in Form Tupel:\n"))
+	b = int(input("Wie ist b?\n"))
+	print("Das Ergebnis: ", fallunterscheidung(b,F,G))
+
+def main():
+	test()
+
+if(__name__ == "__main__"):
+	main()
