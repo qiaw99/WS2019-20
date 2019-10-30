@@ -1,0 +1,1 @@
+Das letzte Element von F soll größer als b sein und das erste Element von G soll kleiner als b sein. Außerdem sollen die beiden Definitionsbereiche miteinander überlappt sein, so dass man vermeiden kann, 2 Intervallen gleichzeitig darzustellen.
