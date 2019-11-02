@@ -13,4 +13,4 @@ sudo yum install python3-matplotlib
 python -m pip install matplotlib
 
 ## Documentation:
-[https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.html#module-matplotlib.pyplot]
+https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.html#module-matplotlib.pyplot
