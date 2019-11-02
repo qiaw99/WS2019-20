@@ -3,7 +3,6 @@ import math
 from matplotlib import pyplot as plt
 
 def plotGraphic():
-	'''
 	# Aufgabe 4 a)
 	x = np.arange(0, 2 * math.pi + 1, 0.01)
 	y = np.sin(x)
@@ -37,7 +36,7 @@ def plotGraphic():
 	plt.savefig("plot3.png")
 	plt.show()
 
-	'''
+
 	# Aufgabe 4 d)
 	x = np.arange(0,2 * math.pi + 1, 0.01)
 	y1 = np.sin(x)
@@ -55,4 +54,8 @@ def plotGraphic():
 	plt.savefig("plot4.png")
 	plt.show()
 
-plotGraphic()
+def main():
+	plotGraphic()
+
+if(__name__ == '__main__'):
+	main()
