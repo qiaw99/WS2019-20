@@ -1,3 +1,11 @@
+'''
+import pysnooper
+@pysnooper.snoop()
+'''
+__author__ = "Qianli und Nazar"
+__copyright__ = "Copyright (c) 2019 qiaw99"
+# https://github.com/qiaw99/WS2019-20/blob/master/LICENSE
+
 import numpy as np
 import math
 from matplotlib import pyplot as plt
