@@ -11,6 +11,7 @@ import math
 from matplotlib import pyplot as plt
 
 def plotGraphic():
+	'''
 	# Aufgabe 4 a)
 	x = np.arange(0, 2 * math.pi + 1, 0.01)
 	y = np.sin(x)
@@ -43,22 +44,23 @@ def plotGraphic():
 	plt.loglog(x, y, basex = 2, basey = 2)
 	plt.savefig("plot3.png")
 	plt.show()
-
+	'''
 
 	# Aufgabe 4 d)
 	x = np.arange(0, 2 * math.pi + 1, 0.01)
 	y1 = np.sin(x)
-
-	plt.title("Plot der Funktion mit skalierten Achsen", ha = "left")
+	# ha = "left"
+	plt.title("Plot der Funktion mit skalierten Achsen")
 
 	plt.subplot(1, 1, 1)
-	plt.plot(x, y1, color = 'r')
+	plt.plot(x, y1, color = 'r', label = "sin x")
 
 	y2 = np.cos(x)
-	plt.plot(x, y2, 'b') 
+	plt.plot(x, y2, 'b', label = "cos x") 
 
 	y3 = 1 / np.square(math.pi) * x * (2 * math.pi - x)
-	plt.plot(x, y3, 'y')
+	plt.plot(x, y3, color = 'y', label = r"$\frac{1}{π^2}x(2π−x)$")
+	plt.legend(loc = 'upper right')
 	plt.savefig("plot4.png")
 	plt.show()
 
