@@ -1,3 +1,11 @@
+'''
+import pysnooper
+@pysnooper.snoop()
+'''
+__author__ = "Qianli und Nazar"
+__copyright__ = "Copyright (c) 2019 qiaw99"
+# https://github.com/qiaw99/WS2019-20/blob/master/LICENSE
+
 # Aufgabe 3 a)
 def fixedpoint(x):
 	temp = str(x)
@@ -29,14 +37,23 @@ def fixedpoint(x):
 	else:
 		return float(temp + '.0')
 
+# Aufgabe 3 b)
 def absoluteError(x,y):
 	return abs(x - y)
 
+# # Aufgabe 3 c)
 def relativeError(x, errAbs):
 	return errAbs / x
 
-x = float(input("x ? \n"))
-y = float(input("y ? \n"))
-print(fixedpoint(x))
-print("The absoluteError is: %.4f " %absoluteError(x,y))
-print(round(relativeError(x, absoluteError(x,y)),4))
+def test():
+	x = float(input("The exact number? \n"))
+	y = float(input("The actual number? \n"))
+	print("The result of fixed point is: " + str(fixedpoint(x)))
+	print("The absoluteError is: %.2f " %absoluteError(x,y))
+	print("The relative error is: %.2f" %relativeError(x, absoluteError(x,y)))
+
+def main():
+	test()
+
+if (__name__ == '__main__'):
+	main()
