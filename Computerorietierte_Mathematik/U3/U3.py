@@ -1,9 +1,7 @@
 # Aufgabe 2 a)
 def runden(x, l):
-	print(x)
 	x = str(x)
 	# In the input there is '\n' whose length equal 2
-	print("len" + 	str(len(x)-1))
 	if(x[0] == '-'):
 		if(not '.' in x):
 			if(len(x) - 2 > l):
@@ -47,7 +45,6 @@ def runden(x, l):
 				if(l > len(x) - 1):
 					return (x + (l - len(x) + 1) * '0')
 				elif(l == len(x) -1):
-					print("return x")
 					return x
 				else:
 					temp = int(x[l])
@@ -67,26 +64,30 @@ def runden(x, l):
 
 # Aufgabe 2 b) 
 def my_add(x, y, rd):
-	return rd(x + y, length)
+	return float(runden(x + y, length))
 
 def my_mult(x, y, rd):
 	temp = x * y
-	print("temp:", temp)
-	return rd(temp, length)
+	return float(runden(temp, length))
 
 def binomA(a, b, rd):
 	a = float(rd(a, length))
 	b = float(rd(b, length))
-	print('a= ',end='')
-	print(a)
-	print('b= ',end='')
-	print(b)
-	return my_add(a, b, length)
+	return my_mult(my_add(a, b, runden), my_add(a, b, runden), length)
 	
+def binomB(a, b, rd):	
+	first = my_mult(float(runden(a, length)), float(runden(a, length)), length)
+	second = 2 * my_mult(float(runden(a, length)), float(runden(b, length)), length)
+	last = my_mult(float(runden(b, length)), float(runden(b, length)), length)
+	return first + second + last
 
-global length 
-length = 5
+def main():
+	global length 
+	length = 5
+	print(binomA(2.1116,3.5189,runden))
+	print(binomB(2.1116,3.5189,runden))
 
-print(my_add(2.0,3.0,runden))
+if (__name__ == '__main__'):
+	main()
 
 
