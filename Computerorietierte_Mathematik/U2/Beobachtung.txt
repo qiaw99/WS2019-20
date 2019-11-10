@@ -1,2 +1,1 @@
-Für absolute und relatives Error ist xy-logarithmus-Skalierung am sinvollsten. Mit xy-Logarithmus-Skalierung kann man gut darüber informieren, wie die Funktion sich in kleinem Intervalle verändert und außerdem ist die Differenz zwischen Maximum und Minimum in einem bestimmten Intervalle nicht so groß ist, damit ein paar Kleinigkeiten deutlich gezeigt werden können.
-
+Für absolute und relatives Error ist xy-logarithmus-Skalierung am sinvollsten. Mit xy-Logarithmus-Skalierung kann man sich gut darüber informieren, wie die Funktion sich in kleinem Intervall verändert und außerdem ist die Differenz zwischen Maximum und Minimum in einem bestimmten Intervall nicht so groß, damit ein paar Kleinigkeiten deutlicher gezeigt werden können.
