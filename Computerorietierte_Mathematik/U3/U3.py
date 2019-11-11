@@ -83,11 +83,10 @@ def binomB(a, b, rd):
 
 def main():
 	global length 
-	length = 5
-	print(binomA(2.1116,3.5189,runden))
-	print(binomB(2.1116,3.5189,runden))
+	length = 6
+	print(binomA(0.012345,0.01234,runden))
+	print(binomB(0.012345,0.01234,runden))
 
 if (__name__ == '__main__'):
 	main()
-
 
