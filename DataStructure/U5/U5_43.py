@@ -1,3 +1,7 @@
+__author__ = "Qianli Wang and Nazar Sopiha"
+__copyright__ = "Copyright (c) 2019 qiaw99"
+# https://github.com/qiaw99/WS2019-20/blob/master/LICENSE
+
 def berechnen(g):
 	# g = (a, value, b)
 	# f(x) = g(x) * x + c 
