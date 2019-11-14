@@ -6,10 +6,16 @@ def berechnen(g):
 	# g = (a, value, b)
 	# f(x) = g(x) * x + c 
 	ls = []
+ 	
  	# Erste Konstant
-	temp = g[1]
-	# Angenommen, dass c1 = 0
-	ls.append(((g[0], temp * g[0]), (g[2], temp * g[2])))
+	temp_k = g[1]
+
+	# Der erste Punkt ist: (temp_x, temp_y)
+	temp_x = g[0]
+	temp_y = g[1]
+	temp_c = temp_y - temp_k * temp_x 
+
+	ls.append(((temp_x, temp_y), (g[2], temp_k * g[2] + temp_c)))
 	counter = 0
 	for i in range(2, len(g) - 2, 2):
 		k = g[i+1]
