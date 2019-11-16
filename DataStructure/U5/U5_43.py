@@ -2,6 +2,8 @@ __author__ = "Qianli Wang and Nazar Sopiha"
 __copyright__ = "Copyright (c) 2019 qiaw99"
 # https://github.com/qiaw99/WS2019-20/blob/master/LICENSE
 
+from matplotlib import pyplot as plt
+
 def berechnen(g):
 	# g = (a, value, b)
 	# f(x) = g(x) * x + c 
@@ -24,6 +26,23 @@ def berechnen(g):
 		c = y - x * k
 		ls.append(((x, y), (g[i+2], k * g[i+2] + c)))
 		counter += 1
+	l1 = []
+	l2 = []
+	for x in ls:
+		l1.append(x[0][0])
+		l1.append(x[1][0])
+		l2.append(x[0][1])
+		l2.append(x[1][1])
+	plt.grid()
+	plt.title("Lineare stückweise Funktion")
+	plt.xlabel("x-Achse")
+	plt.ylabel("y-Achse")
+	for i in range(len(l1)):
+		plt.plot(l1[i], l2[i],'ro')
+		plt.text(l1[i],l2[i],(l1[i],l2[i]),ha='center',va='bottom',fontsize=10)
+	plt.plot(l1,l2)
+	plt.show()	
+
 	return ls
 
 def auswerten(f, x):
@@ -68,16 +87,16 @@ def test():
 
 	print("###### Drittes Beispiel:")
 	print("Die Funktion, die in lineare stückweise Funktion umgewandelt wird:")
-	f = (-10,4,-5,8,3,16,2,14)
+	f = (-10,4,-5,8,3,16,5,14)
 	print(f, "\n")
 	print("Das Ergebnis: ", berechnen(f), "\n")
-
+	
 	print("###### Zweiter Teil: ######")
 	print("Die geteste Funktion ist:", (((1, 2), (2, 3)), ((2, 3), (6, 10)), ((6, 10), (7, 8))),"\n")
 	print("Der Wert an der Stelle 1.5: ", auswerten((((1, 2), (2, 3)), ((2, 3), (6, 10)), ((6, 10), (7, 8))), 1.5), "\n")
 	print("Der Wert an der Stelle 4: ",auswerten((((1, 2), (2, 3)), ((2, 3), (6, 10)), ((6, 10), (7, 8))), 4), "\n")
 	print("Der Wert an der Stelle 6.3: ",auswerten((((1, 2), (2, 3)), ((2, 3), (6, 10)), ((6, 10), (7, 8))), 6.3), "\n")
-
+	
 def main():
 	test()
 
