@@ -1,6 +1,8 @@
 # Aufgabe 2 a)
 def runden(x, l):
-	x = str(x)
+	#changing presentation of x for the cases, when x is something like 4.9999999999991343e-06. Using precision of 20 digits
+	u = ('{:.20f}'.format(x))
+	x = str(u)
 	# In the input there is '\n' whose length equal 2
 	if(x[0] == '-'):
 		if(not '.' in x):
@@ -83,9 +85,9 @@ def binomB(a, b, rd):
 
 def main():
 	global length 
-	length = 6
-	print(binomA(0.012345,0.01234,runden))
-	print(binomB(0.012345,0.01234,runden))
+	length = 7
+	print(binomA(0.012345,-0.01234,runden))
+	print(binomB(0.012345,-0.01234,runden))
 
 if (__name__ == '__main__'):
 	main()
