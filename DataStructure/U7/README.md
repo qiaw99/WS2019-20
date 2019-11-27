@@ -1,6 +1,6 @@
 | Mensch | Wolf | Ziege | Kohlkopf
-| -------|-----:|:----: | --------
-|    0  |   0   |   0   |    0
+| -------|------|:----: | --------
+|   0    |   0  |   0   |    0
 
 Tatsächlich benötigen wir dringend nur diese 4 Zuständen, um alle Situationen zu simulieren. 0 bedeutet, dass der Teilnehmer noch nicht mit dem Boot über den Fluss fährt. 1 bedeutet aber, dass der Teilnehmer schon mit dem Boot über den Fluss gefahren hat.
 
