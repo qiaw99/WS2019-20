@@ -35,6 +35,7 @@ class Test{
      * @param arr
      */
     public static void matrixInitialize(int arr[][], ArrayList<Vertex> arrayList){
+    	int num = 0;
         for(int i = 0; i < arr.length; i++){
             // Status before
         	// arrayList.get(i) -> Objekte von Vertex
@@ -52,6 +53,7 @@ class Test{
                 
                 if(mensch_i != mensch_j && (Math.abs(wolf_i - wolf_j) + Math.abs(ziege_i - ziege_j) + Math.abs(kohlkopf_i - kohlkopf_j) <= 1)){
                     arr[i][j] = 1;
+                    num ++;
                 }else {
                     arr[i][j] = 0;
                 }
@@ -148,6 +150,6 @@ public class U7_53 {
         System.out.println();
         
         Test.traversal(1, 10, arr, hasVisited, arrayList);
-        System.out.println();
+        System.out.println("Es gibt insgesamt 20 Kanten und 10 Knoten.");
     }
 }
