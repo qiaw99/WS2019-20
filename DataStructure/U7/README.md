@@ -1,4 +1,3 @@
-
 | Mensch  Wolf  Ziege Kohlkopf
 |    0     0      0       0
 
@@ -6,25 +5,25 @@ Tatsächlich benötigen wir dringend nur diese 4 Zuständen, um alle Situationen
 
 Folgendes sind alle möglichen Situationen zu diesem Problem: 
 
-1> 0, 0, 0, 0	--->  "Initialisierung"
+1. 0, 0, 0, 0	--->  "Initialisierung"
 
-2> 0, 1, 0, 0	--->  "mensch ziege kohlkopf | wolf"
+2. 0, 1, 0, 0	--->  "mensch ziege kohlkopf | wolf"
 
-3> 0, 0, 1, 0 	---> "mensch wolf kohlkopf | ziege"
+3. 0, 0, 1, 0 	---> "mensch wolf kohlkopf | ziege"
 
-4> 0, 0, 0, 1	--->  "mensch wolf ziege | kohlkopf"
+4. 0, 0, 0, 1	--->  "mensch wolf ziege | kohlkopf"
 
-5> 1, 0, 1, 0	--->  "wolf kohlkopf | mensch ziege"
+5. 1, 0, 1, 0	--->  "wolf kohlkopf | mensch ziege"
 
-6> 0, 1, 0, 1 	---> "mensch ziege | wolf kohlkopf"
+6. 0, 1, 0, 1 	---> "mensch ziege | wolf kohlkopf"
 
-7> 1, 0, 1, 1 	---> "wolf | mensch ziege kohlkopf"
+7. 1, 0, 1, 1 	---> "wolf | mensch ziege kohlkopf"
 
-8> 1, 1, 0, 1 	---> "ziege | mensch wolf kohlkopf"
+8. 1, 1, 0, 1 	---> "ziege | mensch wolf kohlkopf"
 
-9> 1, 1, 1, 0	--->  "kohlkopf | mensch wolf ziege"
+9. 1, 1, 1, 0	--->  "kohlkopf | mensch wolf ziege"
 
-10> 1, 1, 1, 1 	--->  "Fertig"
+10. 1, 1, 1, 1 	--->  "Fertig"
 
 wobei die Sequenz von den Folgen genau wie die in der Tabelle ist.
 
