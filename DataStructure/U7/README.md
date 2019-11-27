@@ -1,5 +1,6 @@
-| Mensch  Wolf  Ziege Kohlkopf
-|    0     0      0       0
+| Mensch | Wolf | Ziege | Kohlkopf
+| -------|-----:|:----: | --------
+|    0  |   0   |   0   |    0
 
 Tatsächlich benötigen wir dringend nur diese 4 Zuständen, um alle Situationen zu simulieren. 0 bedeutet, dass der Teilnehmer noch nicht mit dem Boot über den Fluss fährt. 1 bedeutet aber, dass der Teilnehmer schon mit dem Boot über den Fluss gefahren hat.
 
@@ -7,23 +8,23 @@ Folgendes sind alle möglichen Situationen zu diesem Problem:
 
 > 0, 0, 0, 0	--->  "Initialisierung"
 
-2. 0, 1, 0, 0	--->  "mensch ziege kohlkopf | wolf"
+> 0, 1, 0, 0	--->  "mensch ziege kohlkopf | wolf"
 
-3. 0, 0, 1, 0 	---> "mensch wolf kohlkopf | ziege"
+> 0, 0, 1, 0 	---> "mensch wolf kohlkopf | ziege"
 
-4. 0, 0, 0, 1	--->  "mensch wolf ziege | kohlkopf"
+> 0, 0, 0, 1	--->  "mensch wolf ziege | kohlkopf"
 
-5. 1, 0, 1, 0	--->  "wolf kohlkopf | mensch ziege"
+> 1, 0, 1, 0	--->  "wolf kohlkopf | mensch ziege"
 
-6. 0, 1, 0, 1 	---> "mensch ziege | wolf kohlkopf"
+> 0, 1, 0, 1 	---> "mensch ziege | wolf kohlkopf"
 
-7. 1, 0, 1, 1 	---> "wolf | mensch ziege kohlkopf"
+> 1, 0, 1, 1 	---> "wolf | mensch ziege kohlkopf"
 
-8. 1, 1, 0, 1 	---> "ziege | mensch wolf kohlkopf"
+> 1, 1, 0, 1 	---> "ziege | mensch wolf kohlkopf"
 
-9. 1, 1, 1, 0	--->  "kohlkopf | mensch wolf ziege"
+> 1, 1, 1, 0	--->  "kohlkopf | mensch wolf ziege"
 
-10. 1, 1, 1, 1 	--->  "Fertig"
+> 1, 1, 1, 1 	--->  "Fertig"
 
 wobei die Sequenz von den Folgen genau wie die in der Tabelle ist.
 
