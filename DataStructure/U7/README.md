@@ -5,7 +5,7 @@ Tatsächlich benötigen wir dringend nur diese 4 Zuständen, um alle Situationen
 
 Folgendes sind alle möglichen Situationen zu diesem Problem: 
 
-1. 0, 0, 0, 0	--->  "Initialisierung"
+> 0, 0, 0, 0	--->  "Initialisierung"
 
 2. 0, 1, 0, 0	--->  "mensch ziege kohlkopf | wolf"
 
