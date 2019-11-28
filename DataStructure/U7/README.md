@@ -2,7 +2,7 @@
 | -------|------|:----: | --------
 |   0    |   0  |   0   |    0
 
-Tatsächlich benötigen wir dringend nur diese 4 Zuständen, um alle Situationen zu simulieren. 0 bedeutet, dass der Teilnehmer noch nicht mit dem Boot über den Fluss fährt. 1 bedeutet aber, dass der Teilnehmer schon mit dem Boot über den Fluss gefahren hat.
+Tatsächlich benötigen wir unbedingt nur diese 4 Zuständen, um alle Situationen zu simulieren. 0 bedeutet, dass der Teilnehmer noch nicht mit dem Boot über den Fluss fährt. 1 bedeutet aber, dass der Teilnehmer schon mit dem Boot über den Fluss gefahren ist und sich im Zielpunkt befindet.
 
 Folgendes sind alle möglichen Situationen zu diesem Problem: 
 
@@ -28,9 +28,10 @@ Folgendes sind alle möglichen Situationen zu diesem Problem:
 
 wobei die Sequenz von den Folgen genau wie die in der Tabelle ist.
 
-Alle 10 möglichen Situationen entsprechen dann 10 Knoten in der Graph. Außerdem speichern wir die Graph mithilfe der Adjazenzmatrix. Um die Existenz von einer Kante zwischen zwei Knoten zu bestätigen, müssen wir folgende Bedingungen überprüfen:
-Da nur der Mensch den Boot rudern kann, muss dann das Status vom Menschen verändert werden, also 0 -> 1 oder 1 -> 0. 
-Maximal kann Status von einem Teilnehmer gleichzeitig geändert werden. Aber es kann auch sein, dass der Mensch alleine den Boot rudert. D.h. in diesem Fall verändert nur das Status vom Menschen.
+Alle 10 möglichen Situationen entsprechen dann 10 Knoten in dem Graphen. Außerdem speichern wir den Graphen mithilfe der Adjazenzmatrix. Um die Existenz einer Kante zwischen zwei Knoten zu bestätigen, müssen wir folgende Bedingungen überprüfen:
+>> Da nur der Mensch den Boot rudern kann, muss dann das Status vom Menschen verändert werden, also 0 -> 1 oder 1 -> 0. 
+>>Maximal kann Status von einem Teilnehmer gleichzeitig geändert werden. Aber es kann auch sein, dass der Mensch alleine den Boot rudert. D.h. in diesem Fall verändert nur das Status vom Menschen, was macht aber keinen Sinn.
 
-Um alle Teilnehmer auf der anderen Seite vom Fluss übergehen zu können, sollen wir in der Tatsache einen Weg von “Initialisierung” nach “fertig” herausfinden, was gemeint ist, dass wir die ganze Graph durchgehen müssen, so dass wir am Ende Ergebnisse bekommen können.
+Um alle Teilnehmer auf der anderen Seite vom Fluss übergehen zu können, sollen wir in der Tatsache einen Weg von “Initialisierung” nach “fertig” herausfinden, was gemeint ist, dass wir den ganzen Graphen durchgehen müssen, so dass wir am Ende Ergebnisse bekommen können.
+
 
