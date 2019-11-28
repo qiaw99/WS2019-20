@@ -29,8 +29,9 @@ Folgendes sind alle möglichen Situationen zu diesem Problem:
 wobei die Sequenz von den Folgen genau wie die in der Tabelle ist.
 
 Alle 10 möglichen Situationen entsprechen dann 10 Knoten in dem Graphen. Außerdem speichern wir den Graphen mithilfe der Adjazenzmatrix. Um die Existenz einer Kante zwischen zwei Knoten zu bestätigen, müssen wir folgende Bedingungen überprüfen:
->> Da nur der Mensch den Boot rudern kann, muss dann das Status vom Menschen verändert werden, also 0 -> 1 oder 1 -> 0. 
->>Maximal kann Status von einem Teilnehmer gleichzeitig geändert werden. Aber es kann auch sein, dass der Mensch alleine den Boot rudert. D.h. in diesem Fall verändert nur das Status vom Menschen, was macht aber keinen Sinn.
+> Da nur der Mensch den Boot rudern kann, muss dann das Status vom Menschen verändert werden, also 0 -> 1 oder 1 -> 0. 
+
+>Maximal kann Status von einem Teilnehmer gleichzeitig geändert werden. Aber es kann auch sein, dass der Mensch alleine den Boot rudert. D.h. in diesem Fall verändert nur das Status vom Menschen, was macht aber keinen Sinn.
 
 Um alle Teilnehmer auf der anderen Seite vom Fluss übergehen zu können, sollen wir in der Tatsache einen Weg von “Initialisierung” nach “fertig” herausfinden, was gemeint ist, dass wir den ganzen Graphen durchgehen müssen, so dass wir am Ende Ergebnisse bekommen können.
 
