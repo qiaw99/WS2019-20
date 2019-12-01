@@ -1,3 +1,7 @@
+__author__ = "Qianli und Nazar"
+__copyright__ = "Copyright (c) 2019 qiaw99"
+# https://github.com/qiaw99/WS2019-20/blob/master/LICENSE
+
 import math
 import sys
 import os
@@ -10,7 +14,7 @@ class Logger(object):
 	def write(self, message):
 		self.terminal.write(message)
 		self.log.write(message)
-		
+
 	def flush(self):
 		pass
 
