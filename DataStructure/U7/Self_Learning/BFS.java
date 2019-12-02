@@ -1,7 +1,6 @@
 package Test;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 class AMWGraph{
 	private ArrayList vertexList;
