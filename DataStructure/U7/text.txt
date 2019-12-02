@@ -1,0 +1,5 @@
+a) Wir würden einen ungereichteten Graphen verwenden.
+z.B. mensch wolf ziege | kohlkopf <-> wolf | mensch ziege kohlkopf
+Wenn es zwischen zwei Knoten eine Kante gäbe, dann sollen die beiden Knoten in der Lagen sein, den anderen Knoten zu erreichen. D.h. wie sollen für den ungerichteten Graphen entscheiden.
+
+c) Es gibt insgesamt 20 Kanten und 10 Knoten. 
