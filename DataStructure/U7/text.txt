@@ -1,5 +1,14 @@
+Aufgabe 53
 a) Wir würden einen ungereichteten Graphen verwenden.
 z.B. mensch wolf ziege | kohlkopf <-> wolf | mensch ziege kohlkopf
 Wenn es zwischen zwei Knoten eine Kante gäbe, dann sollten die beiden Knoten in der Lage sein, den anderen Knoten zu erreichen. D.h. wir sollen für den ungerichteten Graphen entscheiden.
 
 c) Es gibt insgesamt 20 Kanten und 10 Knoten.
+
+Aufgabe 52
+Fingerabdruck modulo 1111
+Um 2 Zahlen mit dem gleichen Fingerabdruck zu finden, haben wir verschiedene Algorithmen ausprobiert. Zahlen sollen möglichst gleich sein, also sich von einer (oder event. mehrere) Ziffern unterscheiden.  
+Brute-Force Algorithmus geht durch jeden möglichen Wert (von 10^12 bis 10^13), subtrahiert 1111*n (n = 1,2,3….) bis Ergebnis noch im Wertebereich liegt und vergleicht Ergebnis mit dem ursprünglichen Wert (z.B. String-Vergleich in Python). Dieser Algo ist zu langsam
+Ein anderer Algorithmus ist jede Ziffer (oder 2,3,4..Ziffern)  in einer Zahl zu ändern und dann Rest zu vergleichen.
+Mit dem haben wir sehr schnell 2 Zahlen mit 2-Ziffer-Unterschied gefunden. Für alle Zahlen, die wir schon durchprobiert haben - keine 11-Ziffer-ähnlich gefunden. Aber wir hatten nicht genug Leistung, um alle Zahlen im Wertebereich in 2 Wochen durchzugehen. Es nimmt ungefähr 12 Sekunden für 10^5 Zahlen - zu langsam.
+Wir haben auch Algos für Random Zahlen aus dem Bereich, aber wie früher - keine Zahlen mit einer Ziffer Unterschied, höchstens ganz viele mit 2.
