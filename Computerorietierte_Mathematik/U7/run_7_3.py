@@ -2,8 +2,8 @@ __author__ = "Qianli Wang und Nazar Sopiha"
 __copyright__ = "Copyright (c) 2019 qiaw99"
 # https://github.com/qiaw99/WS2019-20/blob/master/LICENSE
 
-import sys
 import os
+import sys
 import numpy as np
 
 class Logger(object):
