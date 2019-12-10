@@ -19,7 +19,6 @@ class Logger(object):
 		pass
 
 '''
-	Implemntierung mit dynamischer Programmierung
 	Komplexität = O(n)
 	Speicherbedarf = O(n)
 	Wir generieren eine globale Liste, die mehrfach benutzt werden kann, 
