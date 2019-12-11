@@ -25,9 +25,9 @@ def generateData(x):
 	h = concat(f2,f1)	# f^(-1) * f
 	g = concat(f1,f2)
 	val1 = h(x)
-	err1 = abs(val1 - x)
+	err1 = (val1 - x) / x
 	val2 = g(x)
-	err2 = abs(val2 - x)
+	err2 = (val2 - x) / x
 	return (val1, val2, err1, err2)
  
 
@@ -41,10 +41,10 @@ def main():
 	sys.stdout = Logger('daten.txt')
 
 	print("k		val1				val2		         err1				err2") 
-	for i in range(13):
+	print("%-5i|%-.25f|%-.25f|%-.25f|%-.25f" %(0, 0, 0, 0, 0))	
+	for i in range(1, 13):
 		tp = generateData(-1 + 10**(-i))
-		#print(tp)
-		print("%-5i|%-.25f|%-.25f|%-.25f|%-.25f" %(i+1, tp[0],tp[1],tp[2],tp[3]))
+		print("%-5i|%-.25f|%-.25f|%-.25f|%-.25f" %(i, tp[0],tp[1],tp[2],tp[3]))
 	    
 	print('------------------')
 
