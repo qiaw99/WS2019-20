@@ -25,9 +25,9 @@ def generateData(x):
 	h = concat(f2,f1)	# f^(-1) * f
 	g = concat(f1,f2)
 	val1 = h(x)
-	err1 = (val1 - x) / x
+	err1 = abs(val1 - x) / abs(x)
 	val2 = g(x)
-	err2 = (val2 - x) / x
+	err2 = abs(val2 - x) / abs(x)
 	return (val1, val2, err1, err2)
  
 
