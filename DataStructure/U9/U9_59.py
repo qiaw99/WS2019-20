@@ -1,5 +1,3 @@
-#Permutation für t = 1, 3, 5, 13
-
 def hashfunction():
     t_values = [0, 1, 2, 3, 4, 5, 13, 20]
     res = {}
@@ -12,7 +10,6 @@ def hashfunction():
         res[t] = m
     print(res)
     return res
-
 
 hashfunction()
 print("Permutation für t = 1, 3, 5, 13")
