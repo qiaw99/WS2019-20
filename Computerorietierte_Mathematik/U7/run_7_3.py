@@ -21,7 +21,7 @@ class Logger(object):
 '''
 	Komplexität = O(n)
 	Speicherbedarf = O(n)
-	Wir generieren eine globale Liste, die mehrfach benutzt werden kann, 
+	Wir generieren eine globale Liste mit Zwischenergebnise, die mehrfach benutzt werden kann, 
 	damit es reicht, factorial() nur einmal aufzurufen.
 '''
 def factorial(x):
