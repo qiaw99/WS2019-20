@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -37,10 +38,12 @@ def draw_graph(func):
     # {100,...,1000}
     a = np.random.randint(900, size = 1000) + 100
     b = np.random.randint(900, size = 1000) + 100
+
     ls = []
     for i in range(1000):
         counter = func(a[i], b[i])[1]
         ls.append(counter)
+
     gr1 = 0
     gr2 = 0
     gr3 = 0
@@ -75,8 +78,10 @@ def draw_graph(func):
             gr9 += 1
         else:
             gr10 += 1
+
     y = [gr1, gr2, gr3, gr4, gr5,gr6, gr7, gr8, gr9, gr10]
-    x = ['>' + str(i) for i in range (0, maximum+1, maximum//10)]
+    x = ['>' + str(i) for i in range (0, maximum + 1, maximum // 10)]
+
     plt.title("ggT_tumb; max is " + str(maximum) + " min is " + str(minimum))
     plt.xlabel("Gruppe nach der Anzahl der Vergleiche")
     plt.ylabel("Anzahl der Elemente in der Gruppe")
