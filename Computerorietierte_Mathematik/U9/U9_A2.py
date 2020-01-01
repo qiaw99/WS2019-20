@@ -99,14 +99,15 @@ def main():
         x = np.arange(0, 100)    
         y1 = np.array(maximum)
 
-        plt.subplot(1, 1, 1)
-        plt.plot(x, y1, color = 'r', label = "maximum")
+        #plt.subplot(1, 1, 1)
+        plt.plot(x, y1, 'r', label = "maximum")
         
         y2 = np.array(minimum)
         plt.plot(x, y2, 'b', label = "minimum") 
         
         y3 = np.array(durchschnitt)
-        plt.plot(x, y2, 'g', label = "durchschnitt") 
+        plt.plot(x, y3, 'g', label = "durchschnitt") 
+        plt.legend(loc = 'upper right')
         plt.show()
         
         """
