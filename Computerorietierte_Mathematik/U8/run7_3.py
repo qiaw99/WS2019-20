@@ -4,34 +4,50 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+# n ist das minimum zwischen a und b. Dann müssen wir uns zuerst für das minimum entscheiden.
+# kmin = n - 1 + 1 = n
+# kmax = 2(n - 1) + 1 = 2n - 1
 def ggT_tumb(a, b):
     ggt = 1
     counter = 1
     temp = a if a <= b else b
     for i in range(2, temp + 1):
-        counter += 2
-        if (a % i) == 0 and (b % i )== 0:
-            ggt = i
+        counter += 1
+        if (a % i) == 0:
+            counter += 1
+            if (b % i) == 0:
+                ggt = i
     return (ggt, counter)
-
+2*3*5 / 32
+# kmin = 3
+# kmax = n - 1
 def ggT_tumbpp(a, b):
     temp = a if a <= b else b
     counter = 1
     for i in range(temp, 1, -1):
-        counter += 2
-        if((a % i == 0) and (b % i == 0)):
-            return (i, counter)
+        counter += 1
+        if(a % i == 0):
+            counter += 1
+            if (b % i == 0):
+                return (i, counter)
     return (1, counter)
 
+# kmin = 2
+# kmax = 1 + (n - 1) + 1 = n + 1
 def ggT_euclid(a, b):
-    m = a if a >= b else b
-    n = b if a >= b else a
-    counter = 2
+    if a >= b:
+        m = a
+        n = b
+    else:
+        m = b
+        n = a
+    counter = 1
     while(n > 0):
-        r = m % n
         counter += 1
+        r = m % n
         m = n
         n = r
+    counter += 1
     return (m, counter)
 
 def draw_graph_ggT_tumb():
@@ -80,11 +96,12 @@ def draw_graph_ggT_tumb():
             gr10 += 1
 
     y = [gr1, gr2, gr3, gr4, gr5,gr6, gr7, gr8, gr9, gr10]
-    x = ['>' + str(i) for i in range (0, maximum + 1, 200)]
+    x = ['>' + str(i) for i in range (0, maximum * 2, 200)]
 
     plt.title("ggT_tumb; max is " + str(maximum) + " min is " + str(minimum))
     plt.xlabel("Gruppe nach der Anzahl der Vergleiche")
     plt.ylabel("Anzahl der Elemente in der Gruppe")
+    #print(range(len(y)))
     plt.bar(range(len(y)), y, fc = 'r', tick_label = x)
     plt.savefig("histtumb.png")
     plt.show()
@@ -135,7 +152,7 @@ def draw_graph_ggT_tumbpp():
             gr10 += 1
 
     y = [gr1, gr2, gr3, gr4, gr5,gr6, gr7, gr8, gr9, gr10]
-    x = ['>' + str(i) for i in range (0, maximum + 1, 200)]
+    x = ['>' + str(i) for i in range (0, maximum * 2, 200)]
 
     plt.title("ggT_tumbpp; max is " + str(maximum) + " min is " + str(minimum))
     plt.xlabel("Gruppe nach der Anzahl der Vergleiche")
@@ -206,3 +223,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
