@@ -6,7 +6,7 @@ import numpy as np
 
 def ggT_tumb(a, b):
     ggt = 1
-    counter = 0
+    counter = 1
     temp = a if a <= b else b
     for i in range(2, temp + 1):
         counter += 2
@@ -16,7 +16,7 @@ def ggT_tumb(a, b):
 
 def ggT_tumbpp(a, b):
     temp = a if a <= b else b
-    counter = 0
+    counter = 1
     for i in range(temp, 1, -1):
         counter += 2
         if((a % i == 0) and (b % i == 0)):
@@ -26,7 +26,7 @@ def ggT_tumbpp(a, b):
 def ggT_euclid(a, b):
     m = a if a >= b else b
     n = b if a >= b else a
-    counter = 0
+    counter = 2
     while(n > 0):
         r = m % n
         counter += 1
