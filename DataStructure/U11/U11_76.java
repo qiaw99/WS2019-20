@@ -17,7 +17,9 @@ class Drachen{
 		try {
 			put(0);
 		}catch(ResultFound e){
-			
+			//System.out.println("Error trace: " + e.printStackTrace());
+		}finally{
+			System.out.println("Counter = " + this.counter);
 		}
 	}
 	
@@ -69,37 +71,37 @@ class Drachen{
 		b = j;
 		if (a - 2 >= 0) {
 			if (b - 1 >= 0) {
-				capture[a][b] = true;
+				capture[a - 2][b - 1] = true;
 			}
 			if (b + 1 < n) {
-				capture[a][b] = true;
+				capture[a - 2][b + 1] = true;
 			}
 		}
 		
 		if (a + 2 < n) {
 			if (b - 1 >= 0) {
-				capture[a][b] = true;
+				capture[a + 2][b - 1] = true;
 			}
 			if (b + 1 < n) {
-				capture[a][b] = true;
+				capture[a + 2][b + 1] = true;
 			}
 		}
 		
 		if (b - 2 >= 0) {
 			if (a - 1 >= 0) {
-				capture[a][b] = true;
+				capture[a - 1][b - 2] = true;
 			}
 			if (a + 1 < n) {
-				capture[a][b] = true;
+				capture[a + 1][b - 2] = true;
 			}
 		}
 		
 		if (b + 2 < n) {
 			if (a - 1 >= 0) {
-				capture[a][b] = true;
+				capture[a - 1][b + 2] = true;
 			}
 			if (a + 1 < n) {
-				capture[a][b] = true;
+				capture[a + 1][b + 2] = true;
 			}
 		}
 		
@@ -112,16 +114,7 @@ class Drachen{
 		}else {
 			for(int i = 0; i < n; i++) {
 				for (int j = 0; j < n; j++) {
-					System.out.print(capture[i][j] + "  ");
-				}
-				System.out.println();
-			}	
-			System.out.println();
-			System.out.println();
-			for(int i = 0; i < n; i++) {
-				for (int j = 0; j < n; j++) {
 					if (!conflict(i,j)) {
-						System.out.print("i is " + i + " j is " + j + "\n");
 						add(i,j);
 						counter++;
 						res[i][j] = 1;
@@ -161,7 +154,13 @@ class Drachen{
 public class U11_76 {
 	public static void main(String[] args) {
 		if(args.length == 0) {
-			new Drachen(8).print();
+			for (int i = 2; i < 100; i++) {
+				if (new Drachen(i).counter == i) {
+					System.out.println(i);
+				}
+				
+			}
+			
 		}else {
 			new Drachen(Integer.parseInt(args[0]));
 		}
