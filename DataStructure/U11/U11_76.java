@@ -1,11 +1,18 @@
 @SuppressWarnings("serial")
-class ResultFound extends Exception{}
+class ResultFound extends Exception{
+    private String msg;
+    
+    public ResultFound(String msg){
+        super(msg);        
+        this.msg = msg;
+    }
+}
 
 class Drachen{
-	int n;	//n Drachen auf einem nxn Schachbrett
-	int [][] res;
-	boolean [][] capture;
-	long counter;
+	private int n;	//n Drachen auf einem nxn Schachbrett
+	private int [][] res;
+	private boolean [][] capture;
+	private long counter;
 	
 	public Drachen(int n) {
 		this.n = n;
@@ -17,7 +24,7 @@ class Drachen{
 		try {
 			put(0);
 		}catch(ResultFound e){
-			//System.out.println("Error trace: " + e.printStackTrace());
+			e.printStackTrace();
 		}finally{
 			System.out.println("Counter = " + this.counter);
 		}
@@ -32,7 +39,7 @@ class Drachen{
 		}
 	}
 	
-	public void add(int i, int j) {
+	private void add(int i, int j) {
 		for(int a = 0; a < n; a++) {
 			// Spalte checken
 			capture[a][j] = true;
@@ -107,10 +114,10 @@ class Drachen{
 		
 	}
 	
-	public void put(int x) throws ResultFound{
+	private void put(int x) throws ResultFound{
 		// TODO
 		if(isFull()) {
-			throw new ResultFound();
+			throw new ResultFound("Result is found!");
 		}else {
 			for(int i = 0; i < n; i++) {
 				for (int j = 0; j < n; j++) {
@@ -125,7 +132,7 @@ class Drachen{
 		}
 	}
 
-	public boolean isFull () {
+	private boolean isFull () {
 		for(int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
 				if (capture[i][j] == false)
@@ -135,12 +142,16 @@ class Drachen{
 		return true;
 	}
 
-	public boolean conflict (int i, int j) {
+	private boolean conflict (int i, int j) {
 		if (capture[i][j] == true) 
 			return true;
 		return false;
 	}
 	
+    public long getCounter(){
+        return this.counter;
+    }
+    
 	public void print() {
 		for(int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
@@ -152,17 +163,24 @@ class Drachen{
 }
 
 public class U11_76 {
-	public static void main(String[] args) {
+    public static int findMin(){
+        for (int i = 2; i < 100; i++) {
+            if (new Drachen(i).getCounter() == i) {
+                return i;
+            }
+        }
+        // -1 means ERROR
+        return -1;
+    }
+    
+	public static void main(String[] args) throws Exception{
 		if(args.length == 0) {
-			for (int i = 2; i < 100; i++) {
-				if (new Drachen(i).counter == i) {
-					System.out.println(i);
-				}
-				
-			}
-			
-		}else {
-			new Drachen(Integer.parseInt(args[0]));
-		}
+			new Drachen(8).print();
+		}else if(args.length == 1){
+			new Drachen(Integer.parseInt(args[0])).print();
+		}else{
+            throw new Exception("Too much parameters!");
+        }
+        System.out.println("Auf dem 11x11 Schachbrett können 11 Drachen aufstellen");
 	}
 }
