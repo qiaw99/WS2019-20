@@ -1,3 +1,7 @@
+/**
+ * @author Qianli Wang and Nazar Sopiha
+ */
+
 @SuppressWarnings("serial")
 class ResultFound extends Exception{
     private String msg;
