@@ -37,43 +37,94 @@ class Drachen{
 			// Zeile checken
 			capture[i][a] = true;
 		}
-		// 1 Diag
+		// 4 Quad, Diag
 		int a = i,b = j;																																																																																																																																																																																				
-		while(a < n && b < n) {
+		while(a < n - 1 && b < n - 1) {
 			capture[++a][++b] = true;
 		}
 		
-		// 2 Diag
+		// 1 Quad Diag
 		a = i;
 		b = j;																																																																																																																																																																																				
-		while(a < n && b < n) {
-			capture[++a][++b] = true;
+		while(a < n - 1 && b > 0) {
+			capture[++a][--b] = true;
 		}
 		
-		a = i;b = j;																																																																																																																																																																																				
-		while(a < n && b < n) {
-			capture[++a][++b] = true;
+		// 2 Quad Diag
+		a = i;
+		b = j;																																																																																																																																																																																				
+		while(a > 0 && b > 0) {
+			capture[--a][--b] = true;
 		}
 		
-		a = i;b = j;																																																																																																																																																																																				
-		while(a < n && b < n) {
-			capture[++a][++b] = true;
+		// 3 Quad Diag
+		a = i;
+		b = j;																																																																																																																																																																																				
+		while(a > 0 && b < n - 1) {
+			capture[--a][++b] = true;
+		}
+		
+		//Springer
+		a = i;
+		b = j;
+		if (a - 2 >= 0) {
+			if (b - 1 >= 0) {
+				capture[a][b] = true;
+			}
+			if (b + 1 < n) {
+				capture[a][b] = true;
+			}
+		}
+		
+		if (a + 2 < n) {
+			if (b - 1 >= 0) {
+				capture[a][b] = true;
+			}
+			if (b + 1 < n) {
+				capture[a][b] = true;
+			}
+		}
+		
+		if (b - 2 >= 0) {
+			if (a - 1 >= 0) {
+				capture[a][b] = true;
+			}
+			if (a + 1 < n) {
+				capture[a][b] = true;
+			}
+		}
+		
+		if (b + 2 < n) {
+			if (a - 1 >= 0) {
+				capture[a][b] = true;
+			}
+			if (a + 1 < n) {
+				capture[a][b] = true;
+			}
 		}
 		
 	}
 	
 	public void put(int x) throws ResultFound{
 		// TODO
-		if(x == n) {
+		if(isFull()) {
 			throw new ResultFound();
 		}else {
-			for(int i = 1; i <= n; i++) {
-				for (int j = 1; j <= n; j++) {
-					if(!conflict(i, j, x)) {
+			for(int i = 0; i < n; i++) {
+				for (int j = 0; j < n; j++) {
+					System.out.print(capture[i][j] + "  ");
+				}
+				System.out.println();
+			}	
+			System.out.println();
+			System.out.println();
+			for(int i = 0; i < n; i++) {
+				for (int j = 0; j < n; j++) {
+					if (!conflict(i,j)) {
+						System.out.print("i is " + i + " j is " + j + "\n");
+						add(i,j);
+						counter++;
 						res[i][j] = 1;
-						capture[i][j] = true;
-						add(i, j);
-						counter ++;
 						put(x + 1);
 					}
 				}
@@ -81,30 +132,28 @@ class Drachen{
 		}
 	}
 
-	public boolean conflict(int i, int j, int k) {
-		int sum = 0;
-		int capture = 0;
-		for(int a = 0; a < n; a++) {
-			// check the raw
-			for(int b = 0; b < n; b++) {
-				sum += res[a][b];
-				// check the column
-				capture += res[b][a];
-			}
-			if(sum > 1 || capture > 1) {
-				return true;
-			}else {
-				sum = 0;
+	public boolean isFull () {
+		for(int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (capture[i][j] == false)
+					return false;
 			}
 		}
+		return true;
+	}
+
+	public boolean conflict (int i, int j) {
+		if (capture[i][j] == true) 
+			return true;
 		return false;
 	}
 	
 	public void print() {
-		for(int i = 1; i <= n; i++) {
-			for (int j = 1; j <= n; j++) {
-				
+		for(int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				System.out.print(res[i][j] + " ");
 			}
+			System.out.println();
 		}
 	}
 }
@@ -112,7 +161,7 @@ class Drachen{
 public class U11_76 {
 	public static void main(String[] args) {
 		if(args.length == 0) {
-			new Drachen(8);
+			new Drachen(8).print();
 		}else {
 			new Drachen(Integer.parseInt(args[0]));
 		}
