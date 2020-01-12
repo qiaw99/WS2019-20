@@ -68,62 +68,72 @@ def hilfeArray_merge(A, firstPartlowerIndex, secondPartlowerIndex):
         A[i] = mergedList[i - firstPartlowerIndex]          
 
 def main():
+    
     for k in range(1, 5):
         ls = []
-        for i in range(100):
-            temp = [random.random() for j in range(10**k)]
-            ls.append(temp)
-            
         #lists which store counters for each sort-algorithms
         helper1 = []
         helper2 = []
 
-        print("Waiting for the result... with length ", 10**k)
+        maximum1 = []
+        minimum1 = []
+        durchschnitt1 = []
         
-        maximum = []
-        minimum = []
-        durchschnitt = []
-        for x in ls:
-            # a is sorted lists and b is counter
-            a, b = bubblesort(x)
-            helper1.append(b)
+        maximum2 = []
+        minimum2 = []
+        durchschnitt2 = []
+        for i in range(100):
+            temp = [random.random() for j in range(10**k)]
+            ls.append(temp)
             
-            maximum.append(max(helper1))
-            minimum.append(min(helper1))
-            durchschnitt.append(sum(helper1) / len(helper1))
+            ######
+            a, b = bubblesort(temp)
+            helper1.append(b / 10**k)
             
-            a, b = hilfeArray_mergesort(x)
-            helper2.append(b)
-        
-        
-        x = np.arange(0, 100)    
-        y1 = np.array(maximum)
+            maximum1.append(max(helper1))
+            minimum1.append(min(helper1))
+            durchschnitt1.append(sum(helper1) / len(helper1))
+            
+            ######
+            x, y = hilfeArray_mergesort(temp)
+            helper2.append(y / 10**k)
+            maximum2.append(max(helper2))
+            minimum2.append(min(helper2))
+            durchschnitt2.append(sum(helper2) / len(helper2))
 
+        print("Waiting for the result... with length ", 10**k)
+        print(len(maximum1))
+        x1 = np.arange(0, 100)    
+        y1 = np.array(maximum1)
+
+        plt.title("Bubblesort")
         #plt.subplot(1, 1, 1)
-        plt.plot(x, y1, 'r', label = "maximum")
+        plt.plot(x1, y1, 'r', label = "maximum")
         
-        y2 = np.array(minimum)
-        plt.plot(x, y2, 'b', label = "minimum") 
+        y2 = np.array(minimum1)
+        plt.plot(x1, y2, 'b', label = "minimum") 
         
-        y3 = np.array(durchschnitt)
-        plt.plot(x, y3, 'g', label = "durchschnitt") 
+        y3 = np.array(durchschnitt1)
+        plt.plot(x1, y3, 'g', label = "durchschnitt") 
         plt.legend(loc = 'upper right')
         plt.show()
         
-        """
-        print("Die Länge ist: ", 10**k)
-        print("******Bubblesort******")
-        print("Der größte Aufwand: ", max(helper1))
-        print("Der kleinste Aufwand: ", min(helper1))
-        print("Der durchschnittliche Aufwand: ", sum(helper1) / len(helper1))
-        print()
-        print("******Mergesort******")
-        print("Der größte Aufwand: ", max(helper2))
-        print("Der kleinste Aufwand: ", min(helper2))
-        print("Der durchschnittliche Aufwand: ", sum(helper2) / len(helper2))
-        """
+        x2 = np.arange(0, 100)    
+        y4 = np.array(maximum2)
+
+        plt.title("Mergsort")
+        #plt.subplot(1, 1, 1)
+        plt.plot(x2, y4, 'r', label = "maximum")
+        
+        y5 = np.array(minimum2)
+        plt.plot(x1, y5, 'b', label = "minimum") 
+        
+        y6 = np.array(durchschnitt2)
+        plt.plot(x1, y6, 'g', label = "durchschnitt") 
+        plt.legend(loc = 'upper right')
+        plt.show()
+
 if __name__ == "__main__":
     main()
-
 
 
