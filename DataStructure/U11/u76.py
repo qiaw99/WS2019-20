@@ -1,8 +1,9 @@
-n = 11
-solution = [0]*n
+n = 3
+solution = [-1]*n
 captured = [[0 for i in range(n)] for i in range(n)]
 number = 0
-calls = 0
+local_calls = 0
+total_calls = 0
 
 def init():
 	global captured
@@ -12,7 +13,6 @@ def isCaptured(x, y):
     return captured[x][y]
     
 def capture(x, y):
-    #print("capturing ", x, " ", y)
     for i in range(n):
         captured[i][y] += 1
         captured[x][i] += 1
@@ -74,7 +74,6 @@ def capture(x, y):
             captured[x + 1][y + 2] += 1
         
 def free (x, y):
-    #print("clearing ", x, " ", y)
     for i in range(n):
         captured[i][y] -= 1
         captured[x][i] -= 1
@@ -135,10 +134,14 @@ def free (x, y):
              
 
 def find(x):
-    global captured, solution, number, calls
-    if x == n:
+    global captured, solution, number, total_calls, local_calls
+    total_calls += 1
+    local_calls += 1
+    if x == n - 2:
         number += 1
-        print (number, solution)
+        print("Soluiton: ", number, " Coord: ", solution)
+        print("Number of local calls ", local_calls)
+        local_calls = 0
         return
     for j in range(n):
         if not isCaptured(x, j):
@@ -146,9 +149,13 @@ def find(x):
             capture(x, j)
             find(x + 1)
             free(x, j)
-        
-           
+
+print("")
+print("Coordinate '-1' means no Dragon in that line")
+print("")
 find(0)
+print("")
+print("Number of total calls ", total_calls)
 
     
     
