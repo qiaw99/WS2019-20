@@ -1,4 +1,8 @@
-n = 11
+# nxn chessboard
+n = 8
+# number of dragons on the chessboard
+dragons = 5
+
 solution = [-1]*n
 captured = [[0 for i in range(n)] for i in range(n)]
 number = 0
@@ -133,11 +137,11 @@ def free (x, y):
             captured[x + 1][y + 2] -= 1
              
 
-def find(x):
-    global captured, solution, number, total_calls, local_calls
+def find(x, d):
+    global captured, solution, number, total_calls, local_calls, dragons
     total_calls += 1
     local_calls += 1
-    if x == n:
+    if x == d:
         number += 1
         print("Soluiton: ", number, " Coord: ", solution)
         print("Number of local calls ", local_calls)
@@ -147,13 +151,13 @@ def find(x):
         if not isCaptured(x, j):
             solution[x] = j
             capture(x, j)
-            find(x + 1)
+            find(x + 1, dragons)
             free(x, j)
 
 print("")
 print("Coordinate '-1' means no Dragon in that line")
 print("")
-find(0)
+find(0, dragons)
 print("")
 print("Number of total calls ", total_calls)
 
