@@ -1,4 +1,4 @@
-n = 3
+n = 11
 solution = [-1]*n
 captured = [[0 for i in range(n)] for i in range(n)]
 number = 0
@@ -137,11 +137,11 @@ def find(x):
     global captured, solution, number, total_calls, local_calls
     total_calls += 1
     local_calls += 1
-    if x == n - 2:
+    if x == n:
         number += 1
         print("Soluiton: ", number, " Coord: ", solution)
         print("Number of local calls ", local_calls)
-        local_calls = 0
+        local_calls -= 1
         return
     for j in range(n):
         if not isCaptured(x, j):
