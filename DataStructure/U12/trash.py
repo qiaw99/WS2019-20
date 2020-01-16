@@ -7,12 +7,12 @@ import random
 def find_max_len(clauses):
     max = 0
     for clause in clauses:
-        length = len(clause.split(" "))
-        if length  > max:
-            max = length
+        temp = len(clause.split(" "))
+        if temp > max:
+            max = temp
     return max
 
-input = "1 2 -3, -1 3, -2"
+input = "1 2 3, 1 -2, -1 -2 3, -3"
 
 clauses = input.split(", ")
 
@@ -24,16 +24,9 @@ length = find_max_len(clauses) + 1
 
 values_list = [None] * (length)
 
-def assign(variable):
-    global values_list
-    if variable > 0:
-        values_list[variable] = True
-    else:
-        values_list[-variable] = False
 
 def isSatisfied(formula):
-    print("checking if satisfying ", formula)
-    if (formula is None):
+    if formula is None:
         return False
     if len(formula) == 0:
         return True
@@ -42,6 +35,7 @@ def isSatisfied(formula):
         if temp != elem:
             return False
     return True
+
 
 def simplify(variable, formula):
     global values_list
@@ -54,17 +48,14 @@ def simplify(variable, formula):
         res = list(map(int, literals))
         #if true
         if (variable in res):
-            print("deleting ", clause)
-            clauses.remove(clause)
+            formula.remove(clause)
         #if false
         elif (negation in res):
             #for replacing not last element
-            print("removing ", negation, " from ", clause)
             if str(negation) + " " in clause:
                 formula[x] = clause.replace(str(negation) + " ", "")
             elif str(negation) in clause:
                 formula[x] = clause.replace(str(negation), "")
-                print("The last element of the clause. It should be True. It is not. Error")
                 return None
             else:
                 print("dunno what to do with clause ", clause, " and negation: ", negation)
@@ -75,8 +66,6 @@ def simplify(variable, formula):
         #not in clause
         else:
             x += 1
-    print("formula after simplifying with ", variable, " : ", formula)
-    print()
     return formula
 
 
@@ -86,7 +75,6 @@ def generate_assignment():
     for i in range (1, length):
         temp_list[i] = random.choice([True, False])
     if temp_list in checked_assignments:
-        print("generated: ", temp_list, " but it is in ", checked_assignments)
         generate_assignment()
     else:
         values_list = temp_list
@@ -96,31 +84,28 @@ def generate_assignment():
 def find_solution():
     global values_list, clauses, length, checked_assignments
     generate_assignment()
-    formula_copy = clauses
-    for i in range (1, length - 1):
-        if (formula_copy is None):
-            print('fucked up somewhere in simplifying, Trying once more')
+    formula_copy = input.split(", ")
+    for i in range(1, length - 1):
+        if formula_copy is None:
             find_solution()
-        if (values_list[i]):
+        if values_list[i]:
             formula_copy = simplify(i, formula_copy)
         else:
             formula_copy = simplify(-i, formula_copy)
-    if(isSatisfied(formula_copy)):
-        if (len(formula_copy) != 0):
-            if('-' in formula_copy[0]):
+    if isSatisfied(formula_copy):
+        if len(formula_copy) != 0:
+            if '-' in formula_copy[0]:
                 values_list[-1] = False
             else:
                 values_list[-1] = True
-        print(values_list)
+        print("\nSolution found: ")
+        for i in range (1, length):
+            print("x", i, " is: ", values_list[i])
     else:
         if len(checked_assignments) == 2**(length - 1):
             print("all assignments checked. No solution")
             return
         else:
-            print('fucked up, searching more')
             find_solution()
 
-
-
 find_solution()
-
