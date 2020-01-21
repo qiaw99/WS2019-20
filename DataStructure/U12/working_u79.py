@@ -4,6 +4,8 @@ import random
 
 #we assume that all indexes 1...n are there
 
+call_counter = 0
+
 def find_max_len(clauses):
     max = 0
     for clause in clauses:
@@ -12,7 +14,7 @@ def find_max_len(clauses):
             max = temp
     return max
 
-input = "1 2 3, 1 -2, -1 -2 3, -3"
+input = sys.argv[1]
 
 clauses = input.split(", ")
 
@@ -82,7 +84,8 @@ def generate_assignment():
 
 
 def find_solution():
-    global values_list, clauses, length, checked_assignments
+    global values_list, clauses, length, checked_assignments, call_counter
+    call_counter += 1
     generate_assignment()
     formula_copy = input.split(", ")
     for i in range(1, length - 1):
@@ -109,3 +112,4 @@ def find_solution():
             find_solution()
 
 find_solution()
+print("Number of function calls: ", call_counter)
