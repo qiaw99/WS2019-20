@@ -64,7 +64,7 @@ class HuffTree(object):
 
     def traverse_huffman_tree(self, root, code, char_freq):
         """
-        Traverse the huffman tree so that we can get every huffman codings 
+        Traverse the Huffman tree so that we can get every huffman codings 
         corresponded each character and store in char_freq
         """
         if root.isleaf():
@@ -252,7 +252,37 @@ def decompress(inputfilename, outputfilename):
             else:
                 currnode = currnode.get_left()
             code = code[1:]
-            
+
+
+    # Handle the last 24 bits
+    sub_code = code[-16: -8]
+    last_length = 0
+    for i in range(8):
+        last_length <<= 1
+        if sub_code[i] == '1':
+            last_length |= 1
+
+    code = code[:-16] + code[-8:-8 + last_length]
+
+    while len(code) > 0:
+            if currnode.isleaf():
+                temp_byte = six.int2byte(currnode.get_value())
+                output.write(temp_byte)
+                currnode = temp.get_root()
+
+            if code[0] == '1':
+                currnode = currnode.get_right()
+            else:
+                currnode = currnode.get_left()
+            code = code[1:]
+
+    if currnode.isleaf():
+        temp_byte = six.int2byte(currnode.get_value())
+        output.write(temp_byte)
+        currnode = temp.get_root()
+
+    output.close()
+
 if __name__ == '__main__':
     # FLAG 0 compress 1 decompress
     # INPUTFILE： input filename
@@ -266,8 +296,8 @@ if __name__ == '__main__':
         OUTPUTFILE = sys.argv[3]
 
     if FLAG == '0':
-        print('compress file')
+        print('Compress file:')
         compress(INPUTFILE,OUTPUTFILE)
     else:
-        print('decompress file')
+        print('Decompress file:')
         decompress(INPUTFILE,OUTPUTFILE)
