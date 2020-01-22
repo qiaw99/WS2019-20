@@ -69,7 +69,7 @@ class HuffTree(object):
         """
         if root.isleaf():
             char_freq[root.get_value()] = code
-            print(("it = %c  and  freq = %d  code = %s") %(chr(root.get_value()), root.get_weight(), code))
+            print(("item = %c  and  freq = %d  code = %s") %(chr(root.get_value()), root.get_weight(), code))
             return None
         else:
             self.traverse_huffman_tree(root.get_left(), code + '0', char_freq)
@@ -106,7 +106,7 @@ def compress(inputfilename, outputfilename):
     for temp in char_freq.keys():
         print(temp,': ',char_freq[temp])
     """
-    # construct the hufftree list to build the tree
+    # construct the Huffman tree list to build the tree
     list_hufftrees = []
     for x in char_freq.keys():
         list_hufftrees.append(HuffTree(0, x, char_freq[x], None, None))
@@ -114,7 +114,8 @@ def compress(inputfilename, outputfilename):
     length = len(char_freq.keys())
     output = open(outputfilename, 'wb')
 
-    # An integer has 4 bytes
+    
+    # An integer has 4 bytes, the number of keys
     a4 = length & 255
     length = length >> 8
     a3 = length & 255
@@ -128,6 +129,7 @@ def compress(inputfilename, outputfilename):
     output.write(six.int2byte(a4))
 
     # traverse the dictionary and write all values and frequencies
+    # the coding must be stored for decompress
     for x in char_freq.keys():
         output.write(six.int2byte(x))
         temp = char_freq[x]
@@ -138,6 +140,7 @@ def compress(inputfilename, outputfilename):
         a2 = temp & 255
         temp = temp >> 8
         a1 = temp& 255
+        
         # convert an integer to byte
         output.write(six.int2byte(a1))
         output.write(six.int2byte(a2))
@@ -146,3 +149,125 @@ def compress(inputfilename, outputfilename):
     
     temp = buildHuffmanTree(list_hufftrees)
     temp.traverse_huffman_tree(temp.get_root(), '', char_freq)
+    
+    # traverse the whole file and generate the Huffman coding
+    code = ''
+    for i in range(filesize):
+        key = filedata[i] 
+        code = code + char_freq[key]
+        out = 0
+        while len(code) > 8:
+            for x in range(8):
+                out = out << 1
+                if code[x] == '1':
+                    out |= 1
+            code = code[8:]
+            output.write(six.int2byte(out))
+            out = 0
+
+    # the coding less than 8 bits
+    # the number of leaves
+    output.write(six.int2byte(len(code)))
+    out = 0
+    for i in range(len(code)):
+        out <<= 1
+        if code[i] == '1':
+            out = out|1
+    for i in range(8 - len(code)):
+        out <<= 1
+    output.write(six.int2byte(out))
+
+    output.close()
+
+def decompress(inputfilename, outputfilename):
+    f = open(inputfilename,'rb')
+    filedata = f.read()
+    filesize = f.tell()
+
+    # An integer, the number of leaves
+    a1 = filedata[0]
+    a2 = filedata[1]
+    a3 = filedata[2]
+    a4 = filedata[3]    
+    j = 0
+    j = j | a1
+    j = j << 8
+    j = j | a2
+    j = j << 8
+    j = j | a3
+    j = j << 8
+    j = j | a4
+
+    leaf_node_size = j
+
+    # put all frequencies and keys into the dictionary
+    char_freq = {}
+    for i in range(leaf_node_size):
+        c = filedata[4 + i * 5]
+        
+        a1 = filedata[4 + i * 5 + 1]
+        a2 = filedata[4 + i * 5 + 2]
+        a3 = filedata[4 + i * 5 + 3]
+        a4 = filedata[4 + i * 5 + 4]
+        j = 0
+        j = j | a1
+        j = j << 8
+        j = j | a2
+        j = j << 8
+        j = j | a3
+        j = j << 8
+        j = j | a4
+        print(c, j)
+        char_freq[c] = j
+
+    # reconstruct the Huffman tree
+    list_hufftrees = []
+    for x in char_freq.keys():
+        list_hufftrees.append(HuffTree(0, x, char_freq[x], None, None))
+
+    temp = buildHuffmanTree(list_hufftrees)
+    temp.traverse_huffman_tree(temp.get_root(), '', char_freq)
+
+    # decompress according to the Huffman tree
+    output = open(outputfilename, 'wb')
+    code = ''
+    currnode = temp.get_root()
+    for x in range(leaf_node_size * 5 + 4, filesize):
+        c = filedata[x]
+        for i in range(8):
+            if c & 128:
+                code = code +'1'
+            else:
+                code = code + '0'
+            c <<= 1
+
+        while len(code) > 24:
+            if currnode.isleaf():
+                temp_byte = six.int2byte(currnode.get_value())
+                output.write(temp_byte)
+                currnode = temp.get_root()
+
+            if code[0] == '1':
+                currnode = currnode.get_right()
+            else:
+                currnode = currnode.get_left()
+            code = code[1:]
+            
+if __name__ == '__main__':
+    # FLAG 0 compress 1 decompress
+    # INPUTFILE： input filename
+    # OUTPUTFILE：output filename
+    if len(sys.argv) != 4:
+        print("The number of input is wrong!")
+        exit(0)
+    else:
+        FLAG = sys.argv[1]
+        INPUTFILE = sys.argv[2]
+        OUTPUTFILE = sys.argv[3]
+
+    if FLAG == '0':
+        print('compress file')
+        compress(INPUTFILE,OUTPUTFILE)
+    else:
+        print('decompress file')
+        decompress(INPUTFILE,OUTPUTFILE)
