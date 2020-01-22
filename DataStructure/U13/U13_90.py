@@ -1,4 +1,7 @@
 #-*- coding:utf-8 -*-
+__author__ = "Qianli Wang und Nazar Sopiha"
+__copyright__ = "Copyright (c) 2019 qiaw99"
+# https://github.com/qiaw99/WS2019-20/blob/master/LICENSE
 
 import six
 import sys
@@ -289,6 +292,10 @@ if __name__ == '__main__':
     # OUTPUTFILE：output filename
     if len(sys.argv) != 4:
         print("The number of input is wrong!")
+        print("The first parameter is filename")
+        print("The second parameter is flag: 0-compress, 1-decompress")
+        print("The third parameter is inputfilename")
+        print("The forth parameter is outputfilename")
         exit(0)
     else:
         FLAG = sys.argv[1]
