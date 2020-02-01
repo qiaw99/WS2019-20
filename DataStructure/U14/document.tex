@@ -53,7 +53,9 @@ Wir können dann folgendes machen:\\
 \section{Aufgabe 93: Optimaler binärer Suchbaum}
 \textbf{Vom Algorthmus erzeugte Tabelle:}\\
 \includegraphics[scale=0.4]{test.png}\\
-Die Zwischenwerte im Algorithmus, also ${S_i}_j$ in der Tabelle bedeuten das Kosten des optimalen Suchbaums für Schlüssel im Intervall $x_i < x < x_j$. 
+Die Zwischenwerte im Algorithmus, also ${S_i}_j$ in der Tabelle bedeuten das Kosten des optimalen Suchbaums für Schlüssel im Intervall $x_i < x < x_j$. \\
+Die mittlere Suchzeit: $\frac{37}{20}$\\
+\\
 \\
 \\
 \\
@@ -75,17 +77,21 @@ initialize(betrag, M):
 	memo = [[NIL] * betrag]
 	for each m in M:
 		memo[m] = [m]
-	return memo
+	endfor
 	
 changeMoney(betrag):
 	res = {}
 	if(memo[betrag] != NIL):	//Memoization
 		extend memo[betrag]	 into res	// this is a list
 		return 
-	for i:= (m.length - 1) to 0 do:
+	endif
+	
+	for i = (m.length - 1) to 0 do:
 		if(M[i] <= betrag):
 			append M[i] into res	// this is a number
 			return changeMoney(betrag - M[i])
+		endif
+	endfor
 	
 \end{lstlisting}
 Python Code sehen Sie unter: $https://github.com/qiaw99/WS2019-20/blob/master/DataStructure/U14/U14_97.py$
