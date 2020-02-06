@@ -65,34 +65,26 @@ Die mittlere Suchzeit: $\frac{37}{20}$\\
 \textbf{Optimaler binärer Suchbaum:}\\
 \includegraphics[scale=0.6]{test1.png}\\
 
-
-
-
 \section{Aufgabe 97: Zahlen mit Münzen}
 \textbf{Wir nehmen an, dass man möglich weinige Münze bekommen sollte.} \\ 
 \textbf{Teilprobleme:} $A_k$ bedeutet die Liste von Münzen mit dem zu zahlenden Betrag k. \\
 \textbf{Randbedingung:} $A_{M_i} = [M_i]$\\
 \begin{lstlisting}
-initialize(betrag, M):	
-	memo = [[NIL] * betrag]
-	for each m in M:
-		memo[m] = [m]
-	endfor
+coins= [1,2,5,10]
+
+changeMoney(nums):
+	dp = [inf] * nums
+	dp[0] = 0
 	
-changeMoney(betrag):
-	res = {}
-	if(memo[betrag] != NIL):	//Memoization
-		extend memo[betrag]	 into res	// this is a list
-		return 
-	endif
-	
-	for i = (m.length - 1) to 0 do:
-		if(M[i] <= betrag):
-			append M[i] into res	// this is a number
-			return changeMoney(betrag - M[i])
-		endif
-	endfor
+	for i = 1 to ()nums - 1):
+		for j 0 to length(coins):
+			if(coins[j] <= nums):
+				dp[i] = min(dp[i], dp[i - coins[j]] + 1)
+			endif
+		endfor
+	endfor           
+	return dp[nums - 1]
 	
 \end{lstlisting}
-Python Code sehen Sie unter: $https://github.com/qiaw99/WS2019-20/blob/master/DataStructure/U14/U14_97.py$
+Python Code sehen Sie unter: $https://github.com/qiaw99/WS2019-20/blob/$\\$master/DataStructure/U14/U14\_97.py$
 \end{document}
