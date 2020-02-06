@@ -1,8 +1,8 @@
 nums = 34
 coins= [1,2,5,10]
 temp = nums
-dp = [100 for _ in range(nums)]
-dp[0]=0
+dp = [float("inf") for _ in range(nums)]
+dp[0] = 0
 for i in range(1,nums):
     for j in range(len(coins)):
         if(coins[j] <= nums):
