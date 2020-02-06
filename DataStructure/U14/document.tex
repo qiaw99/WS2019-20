@@ -77,8 +77,8 @@ changeMoney(nums):
 	dp = [inf] * nums
 	dp[0] = 0
 	
-	for i = 1 to ()nums - 1):
-		for j 0 to length(coins):
+	for i = 1 to (nums - 1):
+		for j = 0 to length(coins):
 			if(coins[j] <= nums):
 				dp[i] = min(dp[i], dp[i - coins[j]] + 1)
 			endif
